@@ -5,4 +5,11 @@
 ### Informant
 
 - **01/07/2021 :: First of July 2021 Marks the initiation date of this project.**
-  This project is in the beginning state of development, no decisions, pathways or plans have been made to assume the objective plausible as of yet.. If you want to collaborate on this project, contact me at `Neo#1844` through discord. Would be great if you have knowledge of Java, Python and MCForge Scripting! :P
+  <br>
+  This project is in an early (like very early) state of development. Sadly, no decisions, pathways or plans have been made to guarantee the objective plausible as of yet..
+
+### Contribution
+
+If you want to collaborate on this project, go ahead and read the ideas board and understand the fundamental concepts. Also contact me at `Neo#1844` through discord. Would be phenomenal if you know the ins and outs of Java, Python and MCForge Scripting! :P
+
+~
