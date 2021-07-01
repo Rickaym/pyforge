@@ -19,7 +19,7 @@ There are other Minecraft versions we don't intend to support as of yet such as;
 
 ## Contribution
 
-If you want to collaborate on this project, go ahead and read documents from [`informant`](https://github.com/Rickaym/pyminecraft/tree/main/icons) to understand the fundamental concepts.
+If you want to collaborate on this project, go ahead and read documents from [`informant`](https://github.com/Rickaym/pyminecraft/tree/main/informant) to understand the fundamental concepts.
 
 Also contact me at `Neo#1844` through discord. Would be phenomenal if you know the ins and outs of Java, Python and MCForge Scripting! :P
 
