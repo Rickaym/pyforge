@@ -12,7 +12,7 @@ Brief; Utilizing the JVM implementation of Python Jython to create a Python lang
 **To clear up some things! This project strictly entails of [Minecraft Java Edition](https://www.minecraft.net/en-us/store/minecraft-java-edition) and the subdivision of releases for it.**
 
 Assume when you see _"Minecraft Mods"_ to be of Java Edition unless defined explicitly.
-There are other Minecraft versions I don't intend to support as of yet such as;
+There are other Minecraft versions I don't intend to support as yet such as;
 
 - **[Minecraft Bedrock Edition](https://www.minecraft.net/en-us/store/minecraft-windows100)** :: written in C++ and only available on Windows Machines.
 - **[Minecraft Pocket Edition](https://play.google.com/store/apps/details?id=com.mojang.minecraftpe&hl=en&gl=US)** :: written in C++ and supports iOS and Android. Whilst a port of Pocket Edition was released for Windows Phone 8.1 back in 2014 as well.
