@@ -1,3 +1,5 @@
+###### Document is still in progress.. Think of this as an idea board of the ideas understood and established so far.
+
 # Minecraft Java Edition
 
 <p align="center">
@@ -19,7 +21,7 @@ Perhaps this will explain why it's required for a typical installation of Minecr
 
 It's important to note that Minecraft as of present is packaged with it's own Java to run on. Although this does let bundled mods to run on and you will find out about this further down the document.
 
-### JVM and hybrid complications
+#### JVM and hybrid complications
 
 Fortunately, this isn't a Java bootcamp course so I'll be skiing through the details like an indonesian to ajollibee.
 
@@ -27,17 +29,33 @@ Java is known to be an interpreted and compiled language and what does this actu
 
 #### To conceptualize it.
 
-1.  The compiler translates Java programs `.jar` into Java Bytecode `.class`. This is a form of machine language for the imaginary **[Java Virtual Machine](https://simple.wikipedia.org/wiki/Java_virtual_machine)**.
-2.  Java Bytecode programs are then interprets / executes at runtime by **[an interpreter](https://www.javatpoint.com/java-interpreter)**.
+1.  The compiler translates Java programs `.java` into Java Bytecode `.class`. This is a form of machine language for the imaginary **[Java Virtual Machine](https://simple.wikipedia.org/wiki/Java_virtual_machine)**.
+2.  Java Bytecode programs are then interpreted / executed at runtime by **[an interpreter](https://www.javatpoint.com/java-interpreter)**.
 
-What does this mean for Minecraft Modding?
+#### What about Minecraft Modding?
+
+> Mojang and Microsoft provide little official support for this (for example, the game provides no modding API for Java, although Mojang does provide methods for deobfuscating the game), but the EULA permits non-commercial mods.
+
+If there are no official modding APIs what do we do?!?!! Observe the 3rd party modding APIs.
+
+#### Minecraft Modding APIs
+
+There is a variety of modding APIs to choose from — as of currently, to name a few; fabric, forge, sponge etc.. This project focuses on creating a language adapter for **[MinecraftForge](https://github.com/MinecraftForge/MinecraftForge)**.
+
+To create a language adapter for MinecraftForge we must first understand how the modding process works in perspective of how the interactions between Forge, third party mods and the main Minecraft program interacts with each other.
+
+Luckily, MinecraftForge has an official documentation for modding **[here](https://mcforge.readthedocs.io/en/latest/gettingstarted/)** that explains a great deal of information regarded to modding.
+
+#### MinecraftForge modding
+
+In summary (general development);
 <br>
-To be completed...
 
-###### more topics of discussion
+1. Install a JDK (java development kit)
+2. Obtain an MDK (mod development kit) from Forge <sup> [[1]](https://files.minecraftforge.net/) </sup>
+3. Extract the MDK to an folder and pick out necessary files for mod development, namely; `build.gradle`, `gradlew.bat`, `gradlew` and the `gradle` folder.
+4. Move files listed above to a new folder. (this will be your mod projects folder)
+5. Choose an IDE
+6. Generating IDE Launch/Run Configurations
 
-## Minecraft Modding APIs
-
-## Data Packs
-
-## ...
+###### tbc...
