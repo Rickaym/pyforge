@@ -17,6 +17,16 @@ There are other Minecraft versions I don't intend to support as yet such as;
 - **[Minecraft Bedrock Edition](https://www.minecraft.net/en-us/store/minecraft-windows100)** :: written in C++ and only available on Windows Machines.
 - **[Minecraft Pocket Edition](https://play.google.com/store/apps/details?id=com.mojang.minecraftpe&hl=en&gl=US)** :: written in C++ and supports iOS and Android. Whilst a port of Pocket Edition was released for Windows Phone 8.1 back in 2014 as well.
 
+### Scoreboard
+
+Checklist to determine the possibility of a Jython IModLanguageLoader for forge.
+
+| Prerequisite     | Jython Integration | Current Status |
+| ---------------- | ------------------ | -------------- |
+| Java Annotations | 〰️                 | in progress    |
+| Java Generics    | 〰️                 | in progress    |
+| Java Objects     | ✔️                 | known possible |
+
 ## Contribution
 
 If you want to collaborate on this project, go ahead and read documents from [`informant`](https://github.com/Rickaym/pyminecraft/tree/main/informant) to understand the fundamental concepts.

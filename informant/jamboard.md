@@ -24,7 +24,10 @@ Establish a new folder called `resources` that define metadata in `META-INF` wit
 
 Define the version and metadata of the language adapter in `main/resources/pack.mcmeta`.
 
-Example of the metapack is as follows by KotlinForForge;
+<details open>
+<summary>
+Example of the metapack is as follows by KotlinForForge.<br><br>
+</summary>
 
 ```mcmeta
 {
@@ -46,7 +49,12 @@ net.minecraftforge.scorge.lang.ScorgeModLanguageProvider
 thedarkcolour.kotlinforforge.KotlinLanguageProvider
 ```
 
-A closer inspection to `IModLanguageProvider` will tell you that it provides an interface for loading _xyz_.
+<br>
+</details>
+
+<details open>
+<summary>
+A closer inspection to `IModLanguageProvider` will tell you that it provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) for loading _xyz_.</summary><br>
 
 ```java
 package net.minecraftforge.forgespi.language;
@@ -73,6 +81,8 @@ public interface IModLanguageProvider
     }
 }
 ```
+
+</details><br>
 
 This opens up a window to extend the same public interface in Jython which is described as down below <sup>[[1]](https://www.oreilly.com/library/view/python-in-a/0596100469/ch26.html)</sup>;
 
