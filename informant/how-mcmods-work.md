@@ -17,13 +17,13 @@ Starting from `1.8.9`.
 
 Perhaps this will explain why it's required for a typical installation of Minecraft Java Edition to have a version of **Java** in the past.
 
-### **Minecraft Java Edition RUNS! On Java**
+#### **Minecraft Java Edition RUNS! On Java**
 
 It's important to note that Minecraft as of present is packaged with it's own Java to run on. Although this does let bundled mods to run on and you will find out about this further down the document.
 
 #### JVM and hybrid complications
 
-Fortunately, this isn't a Java bootcamp course so I'll be skiing through the details like an indonesian to ajollibee.
+Fortunately, this isn't a Java bootcamp course so I'll be skiing through the details.
 
 Java is known to be an interpreted and compiled language and what does this actually mean?
 
