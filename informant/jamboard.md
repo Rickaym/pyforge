@@ -54,7 +54,10 @@ thedarkcolour.kotlinforforge.KotlinLanguageProvider
 
 <details open>
 <summary>
-A closer inspection to `IModLanguageProvider` will tell you that it provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) for loading _xyz_.</summary><br>
+A closer inspection to IModLanguageProvider.
+</summary>
+
+It provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) attached below for loading _xyz_.
 
 ```java
 package net.minecraftforge.forgespi.language;

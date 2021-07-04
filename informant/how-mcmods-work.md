@@ -1,4 +1,4 @@
-###### Document is still in progress.. Think of this as an idea board of the ideas understood and established so far.
+###### Document is still in progress.. granted as a refined idea board of things understood and established so far.
 
 # Minecraft Java Edition
 
