@@ -1,6 +1,6 @@
 # JamBoard
 
-This is not intended for understanding the project.
+This is not intended for understanding the project!
 
 ## [Scala Language Adapter (Scorge)](https://github.com/MinecraftForge/Scorge)
 
@@ -24,7 +24,7 @@ Establish a new folder called `resources` that define metadata in `META-INF` wit
 
 Define the version and metadata of the language adapter in `main/resources/pack.mcmeta`.
 
-<details open>
+<details>
 <summary>
 Example of the metapack is as follows by KotlinForForge.<br><br>
 </summary>
@@ -52,12 +52,12 @@ thedarkcolour.kotlinforforge.KotlinLanguageProvider
 <br>
 </details>
 
-<details open>
+<details>
 <summary>
 A closer inspection to IModLanguageProvider.
 </summary>
 
-It provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) attached below for loading _xyz_.
+It provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) attached below for loading _xyz_. Read more about the LifeCycleEvents [here](https://mcforge.readthedocs.io/en/1.16.x/concepts/lifecycle/).
 
 ```java
 package net.minecraftforge.forgespi.language;
@@ -92,3 +92,13 @@ This opens up a window to extend the same public interface in Jython which is de
 > The automatic availability of packages on Jython.syspath applies to Java’s standard libraries, third-party Java libraries you have installed, and Java classes you have coded yourself. You can extend Java with C using the Java Native Interface (JNI), and such extensions will be available to Jython code, just as if they were coded in pure Java rather than in JNI-compliant C.
 
 A project post regarding the same idea back in 2015 in the [Minecraft Forums](https://www.minecraftforum.net/) will give you an idea of approach and understanding on this topic <sup>[[2]](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/modification-development/2532785-jython-for-modding)</sup>.
+
+### Plausible Option — Re-making [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events)
+
+1. This option requires implementation of the [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) to be multilingual for Jython, requiring a large overhead of things that comes with re-implementing [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events). If done successfully, it may be possible to register events in Python classes that are directly relayed into the game code. This sort of abstains in using the ForgeSPI provided mod loader and such. It is still very ambiguous how re-making [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) would affect the remaining utilities that comes with [MinecraftForge](https://github.com/MinecraftForge/MinecraftForge).
+
+### Plausible Option — Extending [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events)
+
+1. For the implementation to be maintanable whilst avoiding morbidity, the particulars of [`Registers`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/) or [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) have to be understood.
+
+2. It may be possible to use a Jython to Java adapter (probably an object factory class) to implement the Python mod class into a Java class or object whilst persisting the Python implementation of a Registery responsibility into Java.

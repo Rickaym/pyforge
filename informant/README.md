@@ -4,4 +4,4 @@ This is a walk-through info-board to understand the fundamental concepts of Mine
 
 _Read in directional order from top to bottom_
 
-###### Last Updated: 04/07/2021
+###### Last Updated: 05/07/2021
