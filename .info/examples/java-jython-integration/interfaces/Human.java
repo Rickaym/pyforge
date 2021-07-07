@@ -2,10 +2,15 @@ package interfaces;
 
 public interface Human {
     /**
-     *  Human interface to be implemented in Jython
-     *  Offers two basic methods getName and getAge
+     *  Shadow interface for the incoming Python class.
+     *
+     *  This is made in a particular way that it overshadows the Python class and thus
+     *  making it possible for the PyObject to be coerced with the interface flawlessly.
      */
-    public String getName();
-
-    public int getAge();
+    public String getHumanName();
+    public int getHumanAge();
+    public String getHumanSex();
+    public static String isWhat() {
+        return "Human";
+    }
 }

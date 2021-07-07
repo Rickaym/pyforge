@@ -1,1 +1,13 @@
+# todo
 .todo
+
+# no idea what the heck this is but isn't necessary
+*.iml
+
+# intelliJ stuff
+.idea
+*out
+
+# cache
+.jython_cache
+*__

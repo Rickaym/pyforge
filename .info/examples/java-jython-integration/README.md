@@ -1,4 +1,4 @@
-# `java-jython-integration` IS NOT GRANTED AS A WORKING EXAMPLE —
+# `java-jython-integration` with a working example—
 
 # Integration
 

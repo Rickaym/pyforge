@@ -1,5 +1,3 @@
-###### Document is still in progress.. granted as a refined idea board of things understood and established so far.
-
 # Minecraft Java Edition
 
 <p align="center">
