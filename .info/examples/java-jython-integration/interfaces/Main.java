@@ -1,21 +1,21 @@
 package interfaces;
 
 public class Main {
+    /**
+     * Usage of the object factory design pattern by making calls to the
+     * createXYZ methods.
+     *
+     * @see `Alien`, `Human` and `SimpleFactory`
+     */
     public static void main(String[] args) {
-        /**
-         * Demonstrative usage of the object factory by making calls to the staticmethod create[SEX] with the
-         * appropriate arguments.
-         *
-         * See: `Human` and `HumanFactory`
-         */
-        HumanFactory factory = new HumanFactory();
+        SimpleFactory factory = new SimpleFactory();
 
         Human ricky = factory.createMale("Ricky", 12);
-        HumanFactory.interpret(ricky);
+        SimpleFactory.interpretHuman(ricky);
 
-        Human sarah = factory.createFemale("sarah", 12);
-        HumanFactory.interpret(sarah);
+        System.out.println("\n");
 
-        System.out.println();
+        Alien jorgan = factory.createLizzie("Jorgan", 102, "lizzies");
+        SimpleFactory.interpretAlien((jorgan));
     }
 }

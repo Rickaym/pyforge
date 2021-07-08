@@ -1,16 +1,10 @@
 package interfaces;
 
-public interface Human {
+public interface Human{
     /**
-     *  Shadow interface for the incoming Python class.
-     *
-     *  This is made in a particular way that it overshadows the Python class and thus
-     *  making it possible for the PyObject to be coerced with the interface flawlessly.
+     *  Shadows the incoming Alien Python class.
      */
-    public String getHumanName();
-    public int getHumanAge();
-    public String getHumanSex();
-    public static String isWhat() {
-        return "Human";
-    }
+    String getHumanName();
+    int getHumanAge();
+    String getHumanSex();
 }

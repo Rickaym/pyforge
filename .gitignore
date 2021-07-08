@@ -4,8 +4,11 @@
 # no idea what the heck this is but isn't necessary
 *.iml
 
-# intelliJ stuff
+# IDE stuff
 .idea
+.settings
+.vscode
+.project
 *out
 
 # cache
