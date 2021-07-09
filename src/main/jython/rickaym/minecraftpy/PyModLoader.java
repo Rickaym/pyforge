@@ -1,4 +1,8 @@
-package jython.rickaym.minecraftpy;
+package main.jython.rickaym.minecraftpy;
+
+import org.python.core.Py;
+import org.python.core.PyObject;
+import org.python.core.PySystemState;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +14,7 @@ import java.util.function.BiFunction;
  *
  * Takes the heavy lifting aspects of Java-Python (Jython) integrations of Python objects.
  * This is further more explained in the examples.
- * @see <a href="https://github.com/Rickaym/minecraft.py/tree/main/.info/examples/java-jython-integration">
+ * @see <a href="https://github.com/Rickaym/minecraft.py/tree/main/.info/examples/java-jython-integration">Examples</a>
  */
 public class PyModLoader {
     /** Arbitrary source root for a Python package **/
@@ -31,18 +35,28 @@ public class PyModLoader {
      *
      * This method is recursive.
      */
-    private void getModules(File root) {
-
+    private PyModLoader gatherPyModules(File root) {
         String[] subDirs = root.list();
         if (subDirs != null) {
             for (String subDir : subDirs) {
                 if (subDir.endsWith(".py") &! this.loadedModules.contains(subDir)) {
                     this.loadedModules.add(PyModLoader.getFullPath.apply(root, subDir));
                 } else if (!new File(PyModLoader.getFullPath.apply(root, subDir)).isFile() &! subDir.equals("jython")) {
-                    this.getModules(new File(PyModLoader.getFullPath.apply(root, subDir)));
+                    this.gatherPyModules(new File(PyModLoader.getFullPath.apply(root, subDir)));
                 }
             }
         }
+        return this;
+    }
+
+    private void initializePyModules() {
+        PySystemState sys = new PySystemState();
+        PyObject importer = sys.getBuiltins().__getitem__(Py.newString("__import__"));
+        // TODO: Properly find modules from filepath and initialize them
+        String validPath = this.loadedModules.get(0).replace('\\', '.').substring(1, this.loadedModules.get(0).length() - 3);
+        PyObject module = importer.__call__(Py.newString("moder"));
+        System.out.println(module.__dir__());
+        System.out.println(module.__getattr__(Py.newString("examplemod")));
     }
 
     /**
@@ -53,7 +67,7 @@ public class PyModLoader {
     public static ArrayList<String> loads() {
         ArrayList<String> modules = new ArrayList<>();
         PyModLoader instance = new PyModLoader();
-        instance.getModules(PyModLoader.root);
+        instance.gatherPyModules(PyModLoader.root).initializePyModules();
 
         return instance.loadedModules;
     }

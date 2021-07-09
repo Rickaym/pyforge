@@ -7,7 +7,7 @@
 
 Jython or JPython is a Java implementation of Python (the default Python implementation is CPython or Python) currently supports Version 2.7.2 (comparatively to CPython's 2.7.2 — [here](https://github.com/jython/jython)).
 
-I assume that developers reading the docs are either Java devs migrating to the wonder that is Python, ultimately leaving semi-colons as with the migration. It could be also possible that you are a Python developer simply learning how to make a mod on Minecraft.
+Most developers reading these docs are either Java devs migrating to the wonder that is Python, a land mostly absent of wiggly braces and semi demi colons, or Python devs simply learning how to make a mod on Minecraft.
 
 Eitherways, regardless of if you are a Java dev or a Python dev, here lies the bridge that connects the vast capabilities of both worlds. I will neither be going in-depth with Python syntax or MinecraftForge docs. It will be written in a fool-proof way.
 
@@ -29,13 +29,13 @@ Using;
 
 3. **Jython** _ခ JPython_ is in reference of the Java implementation of [Python](don't_look_at_me_look_above_:p).
 
-4. **Forge** is in reference of [Minecraft Forge](https://github.com/MinecraftForge/MinecraftForge) which is a modloader for Minecraft.
+4. **Forge** is in reference of [Minecraft Forge](https://github.com/MinecraftForge/MinecraftForge) the modloader for Minecraft.
 
 ### Jython language and Syntax
 
 Before we begin, make sure to check the Jython docs [here](https://jython.readthedocs.io/en/latest/). The definitive guide will explain things far better than I can afford.
 
-**Jython has a replicative syntax as CPython**
+**Jython has a replicate syntax as Python**
 
 <details>
   <summary>spoiler:</summary>
@@ -44,7 +44,7 @@ Before we begin, make sure to check the Jython docs [here](https://jython.readth
 
 </details>
 
-Unfortunately, you will find to a great dismay that Jython as of its latest release is only comparable to CPython 2.7.2.
+Unfortunately, you will find to a great dismay that Jython as of its latest release is only equivalent to Python 2.7.2.
 
 It's extremely important that you use Python **2.x** syntax. Be careful with using those paranthesis with the `print` statement!~ Presumably, this implementation includes the Python Data Model and everything that is elegant about python.
 
@@ -77,16 +77,45 @@ else:
     print 'Organization is the key'
 ```
 
-### Java and Jython Integration
+### Java and Python Integration
 
-...
+Let's walk through the the process of Java and Python integration as supported by Jython with simple and brief examples.
+#### Java to Python
 
-#### Can it actually support it?
+Imagine that we have folder structure as such;
+```
+src ┓ 
+    ┣━ Coffee.java
+    ┗━ DeadSnakes.py
+```
+Assume the `Coffee.java` class as such;
+```java
+// inside src.Coffee
+package src;
 
-For Jython to be compatible with Forge we require a decent support, out-of-the-box or not, in fundamental Java concepts like [annotations](https://en.wikipedia.org/wiki/Java_annotation), [generics](https://en.wikipedia.org/wiki/Generics_in_Java#:~:text=Generics%20are%20a%20facility%20of,compile%2Dtime%20type%20safety%22.) and a few other things.
+public class Coffee {
+    public static void drink() {
+        System.out.println("You dies of Heart failure.. someone might have poisoned your coffee");
+    }
+}
+```
+Let's say that we want to use the `Coffee` class from `Coffee.java` inside our `DeadSnakes.py` file.
 
-> Generic programming is a style of computer programming in which algorithms are written in terms of types to-be-specified-later that are then instantiated when needed for specific types provided as parameters.
+To achieve that, it's as simple and easy as;
+```python
+import Coffee
 
-You will find the `Java <=> Jython` integration examples in the examples folder <sup>[[1]](https://github.com/Rickaym/minecraft.py/tree/main/examples/java-jython-integration)</sup>.
+Coffee.drink()
+
+----------
+# Console-output
+>> You dies of Heart failure.. someone might have poisoned your coffee
+```
+
+#### Python to Java
+
+Look at https://github.com/Rickaym/minecraft.py/tree/main/examples/java-jython-integration for now and read https://jython.readthedocs.io/en/latest/JythonAndJavaIntegration/?highlight=generics#chapter-10-jython-and-java-integration.
+
+Will add my own brief definition and examples of this later on.
 
 ###### to be continued -- check `/jamboard.md`...

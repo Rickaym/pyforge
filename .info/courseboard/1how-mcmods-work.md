@@ -56,4 +56,4 @@ In summary (general development);
 5. Choose an IDE
 6. Generating IDE Launch/Run Configurations with ForgeGradle
 
-###### to be continued -- check `/jamboard.md`...
+This concludes the rudimentary concepts of Forge modding.

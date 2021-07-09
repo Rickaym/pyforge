@@ -1,16 +1,21 @@
 # todo
 .todo
 
-# no idea what the heck this is but isn't necessary
-*.iml
-
 # IDE stuff
+*.iml
+*.ipr
+*.iws
 .idea
-.settings
-.vscode
-.project
-*out
+out
+bin
 
-# cache
+.settings
+.metadata
+.classpath
+.project
+
+.vscode
+
+# Python Cache
 .jython_cache
-*__
+__pycache__

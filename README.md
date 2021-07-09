@@ -8,6 +8,10 @@ Brief; Utilizing the JVM implementation of [Python](https://www.python.org/) [Jy
   This project is in an early (like TOO early) state of development.
 - This repository will contain the **on-going** attempts of implementing the concept.
 
+### Status
+1. Rudimentary implementations of the shadow @Mod classes has been written and proven useful. 
+2. Exemplary mod file also implemented. This has not been tested yet.
+3. Needs `Gradle` work done to add extra dependencies
 ### Clearing up the air.
 
 **To clear up some things! This project strictly entails of [Minecraft Java Edition](https://www.minecraft.net/en-us/store/minecraft-java-edition) and the subdivision of releases for it.**

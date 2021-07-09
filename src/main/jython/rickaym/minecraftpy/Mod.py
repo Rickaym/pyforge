@@ -40,7 +40,3 @@ class Mod:
             mod_object.__str__ = lambda *args: Mod.IDENTIFIER
             return mod_object
         return wrapper
-
-
-if __name__ == "__main__":
-    a = MyModClass()
