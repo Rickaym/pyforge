@@ -1,0 +1,1 @@
+.. include:: ../docs/courseboard/how-mcmods-work.rst

@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Minecraft Java Edition &mdash; minecraft.py 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="minecraft.py 0.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="JPython Integration" href="jython_info.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> minecraft.py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#status">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#contribution-and-beta-testing">Contribution and Beta Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jython_info.html">JPython Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jython_info.html#java-and-python-integration">Java and Python Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Minecraft Java Edition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">Java</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-on-java">Running On Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jvm-and-hybrid-complications">JVM and hybrid complications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#to-conceptualize-it">To conceptualize it.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-about-minecraft-modding">What about Minecraft Modding?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minecraft-modding-apis">Minecraft Modding APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#minecraftforge-modding">MinecraftForge modding</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">minecraft.py</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Minecraft Java Edition</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mcmods_info.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="minecraft-java-edition">
+<h1>Minecraft Java Edition<a class="headerlink" href="#minecraft-java-edition" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/Minecraft-Java_Keyart_255x383.jpg" src="_images/Minecraft-Java_Keyart_255x383.jpg" />
+<p>Shockingly, Minecraft Java Edition is written in <a class="reference external" href="https://www.java.com/">Java</a>. Since it’s classic release back in 2009 there has been a decade rich of updates over a few dozens of versions <a class="reference external" href="https://minecraft.fandom.com/wiki/Java_Edition_version_history">see here</a>. This edition allows for cross-platform play between Windows, Linux and macOS — but as far as compatibility goes, there are no OS dependent issues to be in notice.</p>
+<p>To be considerably useful, it would be best to innovate something that suffices for most versions if not all.</p>
+<p>Starting from the <code class="docutils literal notranslate"><span class="pre">1.16.5</span></code> MDK provided by <a class="reference external" href="https://github.com/MinecraftForge/MinecraftForge">Minecraft Forge</a>.</p>
+</section>
+<section id="id1">
+<h1>Java<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Perhaps this will explain why it’s required for a typical installation of Minecraft Java Edition to have a version of <strong>Java</strong> in the past.</p>
+<section id="running-on-java">
+<h2>Running On Java<a class="headerlink" href="#running-on-java" title="Permalink to this headline">¶</a></h2>
+<p>Note that Minecraft as of present is packaged with it’s own Java to run on. Although this isn’t shared with bundled mods as you will find out further down the document.</p>
+</section>
+<section id="jvm-and-hybrid-complications">
+<h2>JVM and hybrid complications<a class="headerlink" href="#jvm-and-hybrid-complications" title="Permalink to this headline">¶</a></h2>
+<p>Fortunately, this isn’t a Java bootcamp course so I’ll be skiing through the details.</p>
+<p>Java is known to be an interpreted and compiled language and what does this actually mean?</p>
+</section>
+<section id="to-conceptualize-it">
+<h2>To conceptualize it.<a class="headerlink" href="#to-conceptualize-it" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>The compiler translates Java programs <code class="docutils literal notranslate"><span class="pre">.java</span></code> into Java Bytecode <code class="docutils literal notranslate"><span class="pre">.class</span></code>. This is a form of machine language for the imaginary <a class="reference external" href="https://simple.wikipedia.org/wiki/Java_virtual_machine">Java Virtual Machine</a>.</p></li>
+<li><p>Java Bytecode programs are then interpreted / executed at runtime by <a class="reference external" href="https://www.javatpoint.com/java-interpreter">an interpreter</a>.</p></li>
+</ol>
+</section>
+<section id="what-about-minecraft-modding">
+<h2>What about Minecraft Modding?<a class="headerlink" href="#what-about-minecraft-modding" title="Permalink to this headline">¶</a></h2>
+<p><em>“Mojang and Microsoft provide little official support for this (for example, the game provides no modding API for Java, although Mojang does provide methods for deobfuscating the game), but the EULA permits non-commercial mods.”</em></p>
+<p>If there are no official modding APIs what do we do?!?!! Introducing 3rd party modding APIs.</p>
+</section>
+<section id="minecraft-modding-apis">
+<h2>Minecraft Modding APIs<a class="headerlink" href="#minecraft-modding-apis" title="Permalink to this headline">¶</a></h2>
+<p>There is a variety of modding APIs to choose from — as of currently, to name a few; fabric, forge, sponge etc.. This project focuses on creating a language adapter for <a class="reference external" href="https://github.com/MinecraftForge/MinecraftForge">Minecraft Forge</a>.</p>
+<p>To implement a language adapter for MinecraftForge we must first understand how the modding process works in perspective of how the interactions between Forge, third party mods and the main Minecraft program interacts with each other.</p>
+<p>Luckily, MinecraftForge has an official documentation for modding <a class="reference external" href="https://mcforge.readthedocs.io/en/latest/gettingstarted/">here</a> that explains a great deal of information regarded to modding.</p>
+</section>
+</section>
+<section id="minecraftforge-modding">
+<h1>MinecraftForge modding<a class="headerlink" href="#minecraftforge-modding" title="Permalink to this headline">¶</a></h1>
+<p>In summary (general development);</p>
+<ol class="arabic simple">
+<li><p>Install a JDK (java development kit)</p></li>
+<li><p>Obtain an MDK (mod development kit) from <a class="reference external" href="https://files.minecraftforge.net/">Forge</a></p></li>
+<li><p>Extract the MDK to an folder and pick out necessary files for mod development, namely; <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>, <code class="docutils literal notranslate"><span class="pre">gradlew.bat</span></code>, <code class="docutils literal notranslate"><span class="pre">gradlew</span></code> and the <code class="docutils literal notranslate"><span class="pre">gradle</span></code> folder.</p></li>
+<li><p>Move files listed above to a new folder. (this will be your mod projects folder)</p></li>
+<li><p>Choose an IDE</p></li>
+<li><p>Generating IDE Launch/Run Configurations with ForgeGradle</p></li>
+</ol>
+<p>This concludes the rudimentary concepts of Forge modding.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="jython_info.html" class="btn btn-neutral" title="JPython Integration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Rickaym.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Stanford-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

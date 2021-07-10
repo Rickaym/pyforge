@@ -19,3 +19,6 @@ bin
 # Python Cache
 .jython_cache
 __pycache__
+
+# Gens
+.pdf
