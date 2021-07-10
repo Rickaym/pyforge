@@ -4,7 +4,7 @@
 Minecraft Java Edition
 ========================
 
-.. image:: _static/Minecraft-Java_Keyart_255x383.jpg
+.. image:: _static/Minecraft_cover.png
 
 Shockingly, Minecraft Java Edition is written in Java_. Since it's classic release back in 2009 there has been a decade rich of updates over a few dozens of versions `see here <https://minecraft.fandom.com/wiki/Java_Edition_version_history>`_. This edition allows for cross-platform play between Windows, Linux and macOS — but as far as compatibility goes, there are no OS dependent issues to be in notice.
 
