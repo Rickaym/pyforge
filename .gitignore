@@ -22,3 +22,9 @@ __pycache__
 
 # Gens
 .pdf
+
+# sphinx
+build
+source
+make.bat
+Makefile
