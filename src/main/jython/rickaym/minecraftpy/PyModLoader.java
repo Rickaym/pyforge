@@ -23,6 +23,8 @@ public class PyModLoader {
     /** Future **/
     private final ArrayList<String> loadedModules = new ArrayList<>();
 
+    private Class<?> modClass;
+
     /** Utility function to construct the full path from root and currently inspected module **/
     private static BiFunction<File, String, String> getFullPath = (root, dir) -> String.format("%s\\%s", root.getPath(), dir);
 
@@ -57,6 +59,9 @@ public class PyModLoader {
         PyObject module = importer.__call__(Py.newString("moder"));
         System.out.println(module.__dir__());
         System.out.println(module.__getattr__(Py.newString("examplemod")));
+
+
+        modClass = this.getClass();
     }
 
     /**
@@ -64,12 +69,12 @@ public class PyModLoader {
      *
      * @return ArrayList of full-paths leading to each file
      */
-    public static ArrayList<String> loads() {
+    public static Class<?> loads() {
         ArrayList<String> modules = new ArrayList<>();
         PyModLoader instance = new PyModLoader();
         instance.gatherPyModules(PyModLoader.root).initializePyModules();
 
-        return instance.loadedModules;
+        return instance.modClass;
     }
 
 }

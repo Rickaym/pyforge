@@ -1,108 +1,57 @@
-# JamBoard
+JamBoard
+========
 
-This is intended for contributors only (currently just me tho :))!
+This is intended for contributors only (currently just me tho :))! Also includes assumptions and pre-set positions and does not guarantee to be accurate - it's why this isn't attached in the sphinx docs.
 
-## [Scala Language Adapter (Scorge)](https://github.com/MinecraftForge/Scorge)
+Language Providers
+--------------------
+`Scorge <https://github.com/MinecraftForge/Scorge>`_
 
-**Implementation~**
+root: ``src/main/scala/net/minecraftforge/scorge/lang...``
+providerEntry: ``src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
 
-1. `src/main/scala/net/minecraftforge/scorge/lang...`
-2. `src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"`
+`KotlinForForge <https://github.com/thedarkcolour/KotlinForForge>`_
 
-## [Kotlin Language Adapter (KotlinForForge)](https://github.com/thedarkcolour/KotlinForForge)
+root: ``src/main/kotlin/thedarkcolour/kotlinforforge...``
+providerEntry: ``src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
 
-**Implementation~**
+Progression
+================
 
-1. `src/main/kotlin/thedarkcolour/kotlinforforge...`
-2. `src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"`
+(To) understand
+------------------
 
-## Progression
+.. warning::
+   This may not be accurate.
 
-The language provider lives under a new package under the name of<br> `src/main/package` **>>** `src/main/jython/rickaym/minecraftpy/...`.
+HOW DO YOU INTEGRATE JYTHON CLASSES INTO JAVA?
+The most common way to achieve this is by utilizing the object factory design pattern. This means that for Jython to go upstream into Java, that class object must have an implementable Java interface. By using this Java interface
+you can create a Python subclass of the interface. In essence, the interface is the Java counter-part of the Python class that is needed for integration to be possible. The Python subclass will now be available to the Java code by
+using the python executor of the ``jython.jar`` package.
 
-A `resources` folder is defined to retain metadata in `META-INF` with a copy of `"net.minecraftforge.forgespi.language.IModLanguageProvider"` inside a folder `services` with the path pointing to the code of the adapter language provider on the classpath.
+How does the language provider interact with the internal FML system?
+1. The Language Provider is placed inside the mods directory and is loaded as a ServiceLoader from the classpath
+(this is guided by the ``.IModLanguageProvider`` ``inside META-INF/services`` referenced in the code as ```providerEntry```
 
-Define the version and metadata of the language adapter in `main/resources/pack.mcmeta`.
+Say the language provider is named PyLanguageProvider
+2. Any class which implements the ``IModLanguageProvider`` class which has several methods, most importantly the ``loadMod`` method
+The ``loadMod`` method is called after the class is loaded in the system level classLoader @ net.minecraftforge.fml.ModLoader:296
 
-<details>
-<summary>
-Example of the metapack is as follows by KotlinForForge.<br><br>
-</summary>
+3. ``loadMod`` proceeds depending on the Language Provider implementation - generally it returns a Mod container instance
 
-```mcmeta
-{
-  "pack": {
-    "description": "Kotlin for Forge resources",
-    "pack_format": 4
-  }
-}
-```
+TO BE CONTINUED
 
-Here we see examples of the IModLanguageProvider that lives inside the services folder to be loaded.
+.. warning::
+   To implement;
+    - build.gradle
+    - mods.toml
 
-```java
-// inside Scorge // net.minecraftforge.forgespi.language.IModLanguageProvider
+[NOTES]
 
-net.minecraftforge.scorge.lang.ScorgeModLanguageProvider
+There is a language provider in Forge called the `MinecraftModLanguageProvider` now what the hell purpose does it serve.
 
-// inside KotlinForForge // net.minecraftforge.forgespi.language.IModLanguageProvider
-thedarkcolour.kotlinforforge.KotlinLanguageProvider
-```
-
-<br>
-</details>
-
-<details>
-<summary>
-A closer inspection to IModLanguageProvider.
-</summary>
-
-It provides [an interface](../ForgeSPI-4.0/src/main/forgespi/language/IModLanguageProvider.java) attached below for loading _xyz_. Read more about the LifeCycleEvents [here](https://mcforge.readthedocs.io/en/1.16.x/concepts/lifecycle/).
-
-```java
-package net.minecraftforge.forgespi.language;
-
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-/**
- * Loaded as a ServiceLoader, from the classpath. ExtensionPoint are loaded from
- * the mods directory, with the FMLTpe META-INF of LANGPROVIDER.
- *
- * Version data is read from the manifest's implementation version.
- */
-public interface IModLanguageProvider
-{
-    String name();
-
-    Consumer<ModFileScanData> getFileVisitor();
-
-    <R extends ILifecycleEvent<R>> void consumeLifecycleEvent(Supplier<R> consumeEvent);
-
-    interface IModLanguageLoader {
-        <T> T loadMod(IModInfo info, ClassLoader modClassLoader, ModFileScanData modFileScanResults);
-    }
-}
-```
-
-</details><br>
-
-This opens up a window to extend the same public interface in Jython which is described as down below <sup>
-
-See: https://www.oreilly.com/library/view/python-in-a/0596100469/ch26.html
-
-> The automatic availability of packages on Jython.syspath applies to Java’s standard libraries, third-party Java libraries you have installed, and Java classes you have coded yourself. You can extend Java with C using the Java Native Interface (JNI), and such extensions will be available to Jython code, just as if they were coded in pure Java rather than in JNI-compliant C.
-
-### ❌Plausible Option — Re-making [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events)
-This method was once considered but deined - provided as a historical context
-1. This option requires implementation of the [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) to be multilingual for Jython, requiring a large overhead of things that comes with re-implementing [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events). If done successfully, it may be possible to register events in Python classes that are directly relayed into the game code. This sort of abstains in using the ForgeSPI provided mod loader and such. It is still very ambiguous how re-making [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) would affect the remaining utilities that comes with [MinecraftForge](https://github.com/MinecraftForge/MinecraftForge).
-
-### ❌ Plausible Option — Extending [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events)
-This method was once considered but deined - provided as a historical context
-
-1. For the implementation to be maintanable whilst avoiding morbidity, the particulars of [`Registers`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/) or [`RegisteryEvents`](https://mcforge.readthedocs.io/en/1.16.x/concepts/registries/#register-events) have to be understood.
-
-2. It may be possible to use a Jython to Java adapter (probably an object factory class) to implement the Python mod class into a Java class or object whilst persisting the Python implementation of a Registery responsibility into Java.
-
-### Plausible Option — Implementing `ILanguageProvider`
-    Wil be explained in depth
+.. seealso::
+   - `Scala Language Provider <https://github.com/MinecraftForge/Scorge>`_ and `Kotlin Language Provider <https://github.com/thedarkcolour/KotlinForForge>`_
+   - `Jython Docs <https://jython.readthedocs.io/en/latest>`_ , `Jython UserGuide <https://wiki.python.org/jython/UserGuide>`_ and most importantly `Chapter 10 <https://jython.readthedocs.io/en/latest/JythonAndJavaIntegration/?highlight=generics#chapter-10-jython-and-java-integration>`_
+   - `Forge Docs <https://mcforge.readthedocs.io/en/latest>`_ and `Minecraft Forge Repository <https://github.com/MinecraftForge/MinecraftForge>`_
+   - `Java Doc Comment Spec <https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html>`_
