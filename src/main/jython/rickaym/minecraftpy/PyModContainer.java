@@ -1,9 +1,13 @@
 package main.jython.rickaym.minecraftpy;
 
 import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.ModLoadingStage;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
+
+import javax.management.AttributeNotFoundException;
 
 /**
  * <strong>Currently holds no true implementation.</strong>
@@ -31,7 +35,6 @@ public class PyModContainer extends ModContainer {
 
     /** Integrated @Mod Java instance **/
     private Object modInstance;
-    private IEventBus eventBus;
     private final Class<?> modClass;
 
     /**
@@ -42,20 +45,18 @@ public class PyModContainer extends ModContainer {
      *
      * @param info      IModInfo is an interface with getters and setters that fetches corresponding mod data, this surmises a mod
      */
-    PyModContainer (final IModInfo info, String className, final ClassLoader loader, final ModFileScanData scandata) {
+    PyModContainer (final IModInfo info, String className, final ClassLoader loader, final ModFileScanData scandata) throws AttributeNotFoundException {
         // Calls the ModContainer constructor, this will do the job of registering the modId,
         // reserve a name space and instantiate the mod loading stage
         super(info);
         activityMap.put(ModLoadingStage.CONSTRUCT, this::constructMod);
-        final PyModLoadingContext contextExtension = new PyModLoadingContext(this);
         this.contextExtension = () -> contextExtension;
         // Loads the @Mod class
-        modClass = PyModLoader.loads();
+        modClass = PyClassLoader.loads();
 
     }
 
     private void constructMod() {
-        this.modInstance = modClass.newInstance();
     }
 
     /**
@@ -73,5 +74,5 @@ public class PyModContainer extends ModContainer {
     @Override
     public Object getMod() { return modInstance; }
 
-    public IEventBus getEventBus() { return this.eventBus; }
+    //public IEventBus getEventBus() { return this.eventBus; }
 }

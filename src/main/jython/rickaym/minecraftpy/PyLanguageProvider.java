@@ -7,25 +7,23 @@ import net.minecraftforge.forgespi.language.ModFileScanData;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.logging.LogManager;
 
 public class PyLanguageProvider implements IModLanguageProvider {
     private String className;
     private String modId;
 
-    private modTarget(String className, String modId) {
+    private void modTarget(String className, String modId) {
         this.className = className;
         this.modId = modId;
     }
 
     public String getModId() { return modId; }
 
-    @Override
-    public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
+    public <T> void loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
         // This language class is loaded in the system level classloader - before the game even starts
         // So we must treat container construction as an arms length operation, and load the container
         // in the classloader of the game - the context classloader is appropriate here.
-        final Class<?> fmlContainer = Class.forName()
+        final Class<?> fmlContainer;
     }
 
     @Override

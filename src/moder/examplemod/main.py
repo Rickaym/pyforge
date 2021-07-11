@@ -1,7 +1,11 @@
-from jython.rickaym.minecraftpy import Mod
+import sys, os
 
-from .extension import ExtensionClass, SecondExtensionClass
-from .more_ext import MoreExt
+sys.path.append(os.path.abspath("main/jython/rickaym/minecraftpy"))
+
+from Mod import Mod
+
+from extension import ExtensionClass, SecondExtensionClass
+from more_ext import MoreExt
 
 mod_id = "abc"
 
@@ -20,7 +24,7 @@ class ModClass:
     mod_id = "abc"
 
     def __init__(self):
-        ...
+        pass
 
     def register(self):
         """

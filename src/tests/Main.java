@@ -1,9 +1,11 @@
 package tests;
 
-import main.jython.rickaym.minecraftpy.PyModLoader;
+import main.jython.rickaym.minecraftpy.PyClassLoader;
+
+import javax.management.AttributeNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
-        PyModLoader.loads();
+    public static void main(String[] args) throws AttributeNotFoundException {
+        PyClassLoader.loads();
     }
 }

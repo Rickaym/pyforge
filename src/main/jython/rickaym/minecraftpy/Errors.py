@@ -1,2 +1,2 @@
 class BadModClass(BaseException):
-    ...
+    pass

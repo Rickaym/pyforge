@@ -1,7 +1,13 @@
-from inspect import isclass
-from typing import AnyStr, Callable
+import sys, os
 
-from .Errors import BadModClass
+from inspect import isclass
+
+from Errors import BadModClass
+
+sys.path.append(os.path.abspath("main/jython/rickaym/minecraftpy"))
+
+import IPyModClass
+
 """
 Main Mod Loader Class
 """
@@ -17,12 +23,12 @@ class Mod:
     """
 
     # mod identifier string
-    IDENTIFIER: str = "pikachu"
+    IDENTIFIER = "pikachu"
 
-    def __init__(self, mod_id: AnyStr = ''):
+    def __init__(self, mod_id=''):
         self.mod_id = mod_id
 
-    def __call__(self, mod_object: Callable):
+    def __call__(self, mod_object):
         """ Class decorator to identify a mod class
 
         Makes use of __str__ as an arbitrary marker.
@@ -37,6 +43,7 @@ class Mod:
         def wrapper():
             if not isclass(mod_object):
                 raise BadModClass("Your decorated Mod Class must be a class ...")
-            mod_object.__str__ = lambda *args: Mod.IDENTIFIER
-            return mod_object
+            decorated_mod = type("ModClass", (mod_object, IPyModClass), mod_object.__dict__)
+            decorated_mod.__str__ = lambda *args: Mod.IDENTIFIER
+            return decorated_mod
         return wrapper

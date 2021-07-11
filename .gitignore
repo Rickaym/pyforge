@@ -17,14 +17,18 @@ bin
 .vscode
 
 # Python Cache
-.jython_cache
+*.jython_cache
 __pycache__
 
 # Gens
-.pdf
+*.pdf
 
 # sphinx
 build
 source
 make.bat
 Makefile
+
+# bytecode
+*.class
+*$py.class
