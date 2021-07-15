@@ -5,10 +5,8 @@ Getting Started
 =================
 What is minecraft.py?
 --------------------------
-A Python language provider for `Minecraft Forge`_. This project utilizes Jython_ to make the language provider possible from the get-go.
+A Python language provider for `Minecraft Forge`_. This project utilizes Jython_. When finished will support 2.7.x Python implementation of a Forge Mod.
 
-Who is minecraft.py?
-----------------------
 Clearing up the air.
 
 This project strictly entails of `Minecraft Java Edition <https://www.minecraft.net/en-us/store/minecraft-java-edition>`_ and the subdivision of releases under it's name.
@@ -22,13 +20,11 @@ There are other Minecraft versions I don't intend to embrace as yet such as;
 
 .. tip:: I'll give you a better one!
 
-Why is minecraft.py?
-----------------------
-This project aims to; introduce pre-existing Python devs to Minecraft modding, offer an alternative language for scripting in that is only as elegant as Python and lastly introduce the Python community to the already gigantic Minecraft modding community.
+**Why is minecraft.py?**
+To introduce pre-existing Python devs to Minecraft modding and offer an alternative language for scripting in that is only as elegant as Python.
 
-How is minecraft.py?
-----------------------
-That's exactly what we'll be discussing throughout this documentation!
+**How is minecraft.py?**
+That's exactly what we'll be discussing throughout the documentation!
 
 Status
 ========
@@ -38,21 +34,24 @@ Status
 
 .. warning::
 
-  This repository only contains the **on-going** attempts of implementing the concept! It has not been completed nor proven working.
+  This project is **on-going**! It has not been completed nor proven working.
 
 What's been done?
 ------------------
-1. Rudimentary implementations of the shadow @Mod classes has been written and proven useful.
-2. Exemplary mod file also implemented. This has not been tested yet.
-3. Needs `Gradle` work done to add extra dependencies
+1. Class Loading
+2. Hands-free Python to java integration
+3. Mod Annotations
 
+**What needs to be done?**
+1. Customized build.gradle and properties
+2. Interpolation with core Forge mechanisms if it is at all possible
 
 Contribution and Beta Testing
 =================================
 
-So far beta-testing has not been offered yet. Although contributions are certainly welcome.
-To contribute on this project, you must read the `docs <https://github.com/Rickaym/pyminecraft/tree/main/docs/>`_ and fully understand the concepts.
+Contributions are most certainly welcome!
+To contribute on this project, you must read `docs <https://github.com/Rickaym/pyminecraft/tree/main/docs/contributions.rst>`_ and all the information provided at your disposal in the docs folder.
 
-Also contact me at `Neo#1844` through discord or join `this <https://discord.gg/UmnzdPgn6g>`_. :P
+Contact me at `Neo#1844` through discord or join `this <https://discord.gg/UmnzdPgn6g>`_. B)
 
 ~

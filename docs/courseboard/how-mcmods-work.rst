@@ -8,9 +8,7 @@ Minecraft Java Edition
 
 Shockingly, Minecraft Java Edition is written in Java_. Since it's classic release back in 2009 there has been a decade rich of updates over a few dozens of versions `see here <https://minecraft.fandom.com/wiki/Java_Edition_version_history>`_. This edition allows for cross-platform play between Windows, Linux and macOS — but as far as compatibility goes, there are no OS dependent issues to be in notice.
 
-To be considerably useful, it would be best to innovate something that suffices for most versions if not all.
-
-Starting from the ``1.16.5`` MDK provided by `Minecraft Forge`_.
+Current model is expected to work in the latest version ``1.16.5`` MDK provided by `Minecraft Forge`_.
 
 Java
 =======
@@ -63,4 +61,4 @@ In summary (general development);
 5. Choose an IDE
 6. Generating IDE Launch/Run Configurations with ForgeGradle
 
-This concludes the rudimentary concepts of Forge modding.
+This concludes the rudimentary concepts of Forge modding, look at `this <https://mcforge.readthedocs.io/en/latest/gettingstarted/>`_ for more information.

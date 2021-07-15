@@ -39,8 +39,8 @@ The ``loadMod`` method is called in the system level classLoader @ net.minecraft
 With ``loadMod``, we are given 3 useful parameters ``IModInfo info, ClassLoader modClassLoader, ModFileScanResults scanResults``
 
 ``info`` is fetched from the ``modInfoMap`` @ net.minecraftforge.fml.ModLoader:269, this seems to be generated from the mod file
-``modClassLoader`` # should be completely dismissed in this
-``scanResults`` has an implementable IModLocator that we can work with to implement scanning -- loaded as a service loader as well
+``modClassLoader`` java class loader in the correct context # should be completely dismissed in this
+``scanResults`` internal mod scanning stuff done somewhere in the system mod loader and has an implementable IModLocator that we can work with to implement scanning -- loaded as a service loader as well
 
 3. ``loadMod`` proceeds depending on the Language Provider implementation - generally it returns a Mod container instance
 

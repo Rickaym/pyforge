@@ -1,0 +1,2 @@
+.. to remain the real docs in the /docs folder -- havent found a better way
+

@@ -1,9 +1,10 @@
 package main.jython.rickaym.minecraftpy;
 
+import main.jython.rickaym.minecraftpy.interfaces.IPyModClass;
+import main.jython.rickaym.minecraftpy.PyClassLoader;
 import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.ModLoadingStage;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.event.lifecycle.IModBusEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 
@@ -15,16 +16,6 @@ import javax.management.AttributeNotFoundException;
  * Extending the abstract class ModContainer to make a mod wrapper that comforts interactions with
  * the mod loading service and the overall system contact and management.
  * <br><br>
- * Inherits a lot of useful stuff from the ModContainer. Out of each given abstract methods and fields,
- * these methods are to be implemented.
- * <table border="1">
- *   <tr>
- *     <td> 1. {@link ModContainer#matches}</td>
- *   </tr>
- *   <tr>
- *     <td> 2. {@link ModContainer#getMod}</td>
- *   </tr>
- * </table>
  *
  * Check the {@link ModContainer} class to understand more about what this class implements.
  *<br><br>
@@ -35,7 +26,6 @@ public class PyModContainer extends ModContainer {
 
     /** Integrated @Mod Java instance **/
     private Object modInstance;
-    private final Class<?> modClass;
 
     /**
      * PyModContainer to.. presumably contain mods :)
@@ -51,12 +41,16 @@ public class PyModContainer extends ModContainer {
         super(info);
         activityMap.put(ModLoadingStage.CONSTRUCT, this::constructMod);
         this.contextExtension = () -> contextExtension;
-        // Loads the @Mod class
-        modClass = PyClassLoader.loads();
-
+        //this.eventBus = BusBuilder.builder().setExceptionHandler(this::onEventFailed).setTrackPahses(false).markerType(IModBusEvent.class).build();
     }
 
     private void constructMod() {
+        try {
+            this.modInstance = PyClassLoader.loads();
+        } catch (AttributeNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.format("Loaded mod instance with name %s", this.modInstance.toString());
     }
 
     /**
@@ -66,13 +60,23 @@ public class PyModContainer extends ModContainer {
      * @return if the mod matches
      */
     @Override
-    public boolean matches(Object mod) { return mod == modInstance; }
+    public boolean matches(Object mod) {
+        return mod == modInstance;
+    }
 
     /**
      * @return the mod object instance
      */
     @Override
-    public Object getMod() { return modInstance; }
+    public Object getMod() {
+        return modInstance;
+    }
 
-    //public IEventBus getEventBus() { return this.eventBus; }
+    //private void onEventFailed(IEventBus iEventBus, Event event, IEventListener[] iEventListeners, int i, Throwable throwable) {
+    //    LOGGER.error(new EventBusErrorMessage(event, i, iEventListeners, throwable));
+    //}
+
+    //public IEventBus getEventBus() {
+    //    return this.eventBus;
+    //}
 }

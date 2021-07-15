@@ -36,7 +36,7 @@ Using;
 Jython language and Syntax
 ---------------------------
 
-Before we begin, make sure to check the Jython docs `here <https://jython.readthedocs.io/en/latest/>`_. The definitive guide will explain things far better than I can afford.
+Before we begin, make sure to check the `Jython docs <https://jython.readthedocs.io/en/latest/>`_. The definitive guide will explain things far better than I can afford.
 
 **Jython has a replicate syntax as Python**
 
@@ -125,4 +125,4 @@ Python to Java
 
 Will add my own brief definition and examples of this later on.
 
-###### to be continued -- check `/jamboard.md`...
+**TO BE CONTINUED**

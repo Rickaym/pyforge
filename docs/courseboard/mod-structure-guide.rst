@@ -7,7 +7,7 @@ Structure
 -----------
 If you've previously developed a mod with Forge, you will notice that the mod folder is in a neat Java package stylee.
 
-Similarly, it's required to setup the mod folder in a form equavilent to a Python package (excluding ``setup.py`` and other config files).
+Similarly, it's required to setup the mod folder in a form equivalent to a Python package (excluding ``setup.py`` and other config files).
 As an example provided in the examples mod folder;
 
 .. code-block::
@@ -41,4 +41,17 @@ Provided in the examples folder;
 
    getModClass = lambda: ModClass
 
-That's about it so far!
+It is necessary to decorate your mod class with the ``@Mod`` decorator. This attaches required annotations to your mod class and removes any singleton functions.
+Follow along closely as so far importing the ``Mod`` decorator has been a bit funky.
+
+Add the language provider package into your ``sys.path`` as directed below. This is done to ensure that any distant imports done inside the mod files can see modules inside the langauge provider class.
+
+.. code-block:: python
+
+   import sys, os
+
+   sys.path.append(os.path.abspath("main/jython/rickaym/minecraftpy"))
+
+   from Mod import Mod # imports will now search the lang provider package
+
+That is it so far!

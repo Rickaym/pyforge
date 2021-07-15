@@ -9,26 +9,24 @@ from more_ext import MoreExt
 
 mod_id = "abc"
 
-
 @Mod(mod_id=mod_id)
-class ModClass:
+class ModClass_:
     """
     Exemplary implementation of the Mod class.
 
-    Decorated with the @Mod decorator with the appropriate
-    mod id passed in as a parameter.
+    Identified using the @Mod decorator and an appropriate
+    mod id.
 
-    It's usually a bad idea to decorate multiple classes with
-    the decorator and expose both of them publicly.
+    It's a bad idea to decorate multiple classes with
+    this decorator and expose both of them publicly.
     """
-    mod_id = "abc"
 
     def __init__(self):
         pass
 
     def register(self):
         """
-        Non static method to register things into appropriate registries
+        Method to register things into appropriate registries
         """
         ExtensionClass.register()
         SecondExtensionClass.register()
