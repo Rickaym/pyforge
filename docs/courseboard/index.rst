@@ -12,6 +12,9 @@ These docs are contemporary per développement.
 .. toctree::
    :maxdepth: 3
 
-   reference
+   how-mcmods-work
+   jython
+   mod-structure-guide
+   contributions
 
-.. include:: ../README.rst
+.. include:: ../../README.rst

@@ -24,9 +24,12 @@ __pycache__
 *.pdf
 
 # sphinx
+build
 _build
 _static
 _templates
+make.bat
+Makefile
 
 # bytecode
 *.class

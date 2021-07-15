@@ -1,0 +1,12 @@
+version: 0.0.1
+
+sphinx:
+  configuration: docs/courseboard/conf.py
+
+formats:
+  - pdf
+
+python:
+  version: 3.7
+  install:
+    - requirements: docs/courseboard/theme.txt
