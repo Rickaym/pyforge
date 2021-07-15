@@ -27,7 +27,7 @@ There are other Minecraft versions I don't intend to embrace as yet such as;
 To introduce pre-existing Python devs to Minecraft modding and offer an alternative language for scripting in that is only as elegant as Python.
 
 **How is minecraft.py?**
-That's exactly what we'll be discussing throughout the documentation! See `readthedocs <minecraft-py.readthedocs.io>`_
+That's exactly what we'll be discussing throughout the documentation! See `readthedocs <https://minecraft-py.readthedocs.io/en/latest/>`_.
 
 Status
 ========
