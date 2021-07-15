@@ -1,6 +1,9 @@
 .. _`Minecraft Forge`: https://github.com/MinecraftForge/MinecraftForge
 .. _Jython: https://www.jython.org
 
+.. image:: https://readthedocs.org/projects/minecraft-py/badge/?version=latest
+   :alt: Documentation Status
+
 Getting Started
 =================
 What is minecraft.py?
@@ -24,7 +27,7 @@ There are other Minecraft versions I don't intend to embrace as yet such as;
 To introduce pre-existing Python devs to Minecraft modding and offer an alternative language for scripting in that is only as elegant as Python.
 
 **How is minecraft.py?**
-That's exactly what we'll be discussing throughout the documentation!
+That's exactly what we'll be discussing throughout the documentation! See `readthedocs <minecraft-py.readthedocs.io>`_
 
 Status
 ========
