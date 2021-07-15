@@ -1,6 +1,9 @@
 .. _`Minecraft Forge`: https://github.com/MinecraftForge/MinecraftForge
 .. _Jython: https://www.jython.org
 
+.. image:: https://readthedocs.org/projects/minecraft-py/badge/?version=latest
+   :alt: Documentation Status
+
 Getting Started
 =================
 What is minecraft.py?
