@@ -20,7 +20,7 @@ bin
 *.jython_cache
 __pycache__
 
-# Gens
+# Gense
 *.pdf
 
 # sphinx
