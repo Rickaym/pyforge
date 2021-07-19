@@ -48,6 +48,7 @@ What's been done?
 **What needs to be done?**
 1. Customized build.gradle and properties
 2. Interpolation with core Forge mechanisms if it is at all possible
+3. Concept demonstration has multiple problems with Jython rather than the integration itself
 
 Contribution and Beta Testing
 =================================
