@@ -1,10 +1,8 @@
 package main.jython.rickaym.minecraftpy;
 
-import main.jython.rickaym.minecraftpy.interfaces.IPyModClass;
-import main.jython.rickaym.minecraftpy.PyClassLoader;
+
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingStage;
-import net.minecraftforge.fml.event.lifecycle.IModBusEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 

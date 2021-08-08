@@ -1,3 +1,1 @@
-from .Mod import Mod
-
-__all__ = [Mod]
+__all__ = ["Mod", "IPyModClass"]

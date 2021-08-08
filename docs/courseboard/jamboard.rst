@@ -7,13 +7,13 @@ Language Providers
 --------------------
 `Scorge <https://github.com/MinecraftForge/Scorge>`_
 
-root: ``src/main/scala/net/minecraftforge/scorge/lang...``
-providerEntry: ``src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
+root: ``src/main.jython.rickaym.main/scala/net/minecraftforge/scorge/lang...``
+providerEntry: ``src/main.jython.rickaym.main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
 
 `KotlinForForge <https://github.com/thedarkcolour/KotlinForForge>`_
 
-root: ``src/main/kotlin/thedarkcolour/kotlinforforge...``
-providerEntry: ``src/main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
+root: ``src/main.jython.rickaym.main/kotlin/thedarkcolour/kotlinforforge...``
+providerEntry: ``src/main.jython.rickaym.main/resources/META-INF/services/"net.minecraftforge.forgespi.language.IModLanguageProvider"``
 
 Progression
 ================

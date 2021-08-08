@@ -10,11 +10,11 @@ JPython Integration
 
 .. image:: _static/jython.png
 
-Jython or JPython is a Java implementation of Python (the default Python implementation is CPython or Python) currently supports Version 2.7.2 (comparatively to CPython's 2.7.2 — `here <https://github.com/jython/jython>`_.
+Jython or JPython is a Java implementation of Python (the default Python implementation is CPython or Python) currently supports Version 2.7.2 comparatively to CPython's 2.7.2 — `here <https://github.com/jython/jython>`_.
 
-Most developers reading these docs are either Java devs migrating to the wonder that is Python, a land mostly absent of wiggly braces and semi demi colons, or Python devs simply learning how to make a mod on Minecraft.
+Majority of the developers reading these docs are either Java devs migrating on a great winter to the elegance and warmth that is Python, abandoning the riches of semicolons and sqiggly brackets, or new and old Python devs learning to make a mod for Minecraft.
 
-Eitherways, regardless of if you are a Java dev or a Python dev, here lies the bridge that connects the vast capabilities of both worlds. I will neither be going in-depth with Python syntax or MinecraftForge docs. It will be written in a fool-proof way.
+On either cases, regardless of if you are a Java dev or a Python dev, herein lies the bridge that connect both worlds. It's important to understand that Jython isn't a different language. An implementation of Python means that the Jython developers had followed the pace and route that the CPython developers had set through Java.
 
 Wording
 ---------
@@ -42,11 +42,10 @@ Before we begin, make sure to check the `Jython docs <https://jython.readthedocs
 
 .. note::  It's the same language — just a different implementation, *looks angrily as Iron Python*.
 
-Unfortunately, you will find to a great dismay that Jython as of its latest release is only equivalent to Python 2.7.2.
+As I've mentioned before and I say this with a great dismay that Jython as of its latest recommended release is only equivalent to Python 2.7.2. It's extremely important that all python code features Python **2.x** syntax. 
+Be careful with using those paranthesis with the `print` statement!~ 
 
-It's extremely important that you use Python **2.x** syntax. Be careful with using those paranthesis with the `print` statement!~ Presumably, this implementation includes the Python Data Model and everything that is elegant about python.
-
-For those migrating from a different language, it is important that you understand the Python structure and organization.
+For those migrating from a different language, it's necessary to understand the Python datamodel, syntax and it's forced organization.
 
 *"Another key factor in which Python differs from other languages is its coding structure. Back in the day, we had to develop programs based upon a very strict structure such that certain pieces must begin and end within certain punctuations. Python uses indentation rather than punctuation to define the structure of code. Unlike languages such as Java that use brackets to open or close a code block, Python uses spacing as to make code easier to read and also limit unnecessary symbols in your code. It strictly enforces ordered and organized code but it lets the programmer define the rules for indentation, although a standard of four characters exists."*
 
@@ -121,7 +120,7 @@ Python to Java
 -----------------
 
 .. seealso::
-   `Examples folder <https://github.com/Rickaym/minecraft.py/tree/main/examples/java-jython-integration>`_ and the official doc's `example <https://jython.readthedocs.io/en/latest/JythonAndJavaIntegration/?highlight=generics#chapter-10-jython-and-java-integration>`_.
+   `Examples folder <https://github.com/Rickaym/minecraft.py/tree/main.jython.rickaym.main/examples/java-jython-integration>`_ and the official doc's `example <https://jython.readthedocs.io/en/latest/JythonAndJavaIntegration/?highlight=generics#chapter-10-jython-and-java-integration>`_.
 
 Will add my own brief definition and examples of this later on.
 

@@ -1,11 +1,6 @@
-import sys, os
-
 from inspect import isclass
-from Errors import BadModClass
 
-sys.path.append(os.path.abspath("./"))
-
-from main.jython.rickaym.minecraftpy.interfaces import IPyModClass
+from main.jython.rickaym.minecraftpy import IPyModClass
 
 """
 Main Mod Loader Class
@@ -13,7 +8,8 @@ Main Mod Loader Class
 
 
 def Mod(mod_id=None):
-    """A Python implementation of a java annotation.
+    """
+    Unique Mod Identifier.
 
     Filters out bogus functions inside the namespace and lets the
     register method persist, and adds the mod metadata.
@@ -22,7 +18,7 @@ def Mod(mod_id=None):
     """
     def class_wrapper(mod_object):
         if not isclass(mod_object):
-            raise BadModClass("Your decorated Mod Class must be a class ...")
+            raise TypeError("your decorated Mod Class must be a class ...")
 
         class DecoratedMod(IPyModClass):
             register = mod_object.register
@@ -30,5 +26,6 @@ def Mod(mod_id=None):
             __mod_meta__ = (("mod_id", mod_id),
                             ("class_name", mod_object.__name__),
                             ("name_space", mod_object.__dict__.keys()))
+
         return DecoratedMod
     return class_wrapper

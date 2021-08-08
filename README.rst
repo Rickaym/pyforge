@@ -41,20 +41,20 @@ Status
 
 What's been done?
 ------------------
-1. Class Loading
-2. Hands-free Python to java integration
-3. Mod Annotations
-
-**What needs to be done?**
-1. Customized build.gradle and properties
-2. Interpolation with core Forge mechanisms if it is at all possible
-3. Concept demonstration has multiple problems with Jython rather than the integration itself
+☑ Proof of concept has been tested and proven working
+☑ Recursive PyObject Loading - Gets the mod class using a supplier
+☑ Single Decorator to handle complete Java to Python integration
+☑ Mod Decorator
+☐ Improved PyObject Loading
+☐ Mod Capability Testing
+☐ Rewrite build.gradle and properties
+☐ Interpolation with core Forge mechanisms
 
 Contribution and Beta Testing
 =================================
 
 Contributions are most certainly welcome!
-To contribute on this project, you must read `docs <https://github.com/Rickaym/pyminecraft/tree/main/docs/contributions.rst>`_ and all the information provided at your disposal in the docs folder.
+To contribute on this project, you must read `docs <https://github.com/Rickaym/pyminecraft/tree/main.jython.rickaym.main/docs/contributions.rst>`_ and all the information provided at your disposal in the docs folder.
 
 Contact me at `Neo#1844` through discord or join `this <https://discord.gg/UmnzdPgn6g>`_. B)
 

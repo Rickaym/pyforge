@@ -1,13 +1,12 @@
 package main.jython.rickaym.minecraftpy;
 
+
 import net.minecraftforge.forgespi.language.ILifecycleEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.IModLanguageProvider;
 import net.minecraftforge.forgespi.language.ModFileScanData;
-import main.jython.rickaym.minecraftpy.PyModContainer;
 
 import javax.management.AttributeNotFoundException;
-import java.lang.reflect.Constructor;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

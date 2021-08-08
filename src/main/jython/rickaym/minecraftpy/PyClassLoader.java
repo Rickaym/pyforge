@@ -1,6 +1,6 @@
 package main.jython.rickaym.minecraftpy;
 
-import main.jython.rickaym.minecraftpy.interfaces.IPyModClass;
+
 import org.python.core.*;
 
 import javax.management.AttributeNotFoundException;
@@ -26,7 +26,7 @@ public class PyClassLoader {
     private PyObject modPointer;
     private IPyModClass modClass;
 
-    private static BiFunction<File, String, String> getFullPath = (root, dir) -> String.format("%s\\%s", root.getPath(), dir);
+    private static final BiFunction<File, String, String> getFullPath = (root, dir) -> String.format("%s\\%s", root.getPath(), dir);
 
     /**
      * Iterates through the source root and their subsequent sub directories to extract
@@ -54,15 +54,14 @@ public class PyClassLoader {
         PyObject importer = sys.getBuiltins().__getitem__(Py.newString("__import__"));
 
         String topLevelPackage = loadedModules
-                        .stream().sorted((e1, e2) -> e1.length() < e2.length() ? -1: 1)
-                        .findFirst().get();
+                .stream().min((e1, e2) -> e1.length() < e2.length() ? -1 : 1).get();
         String[] descPath = topLevelPackage.replace("\\", "/").split("/");
 
         modPackage = importer.__call__(Py.newString(descPath[descPath.length-2]));
         PyList attrs = (PyList) modPackage.__dir__();
 
         if (!attrs.__contains__(Py.newString("getModClass"))) {
-            throw new AttributeNotFoundException("You need a lambda expression in your __init__ file that returns the mod class.");
+            throw new AttributeNotFoundException("You need a lambda expression in your __init__ file that returns the mod class with the name getModClass.");
         } else {
             PyObject modSupplier = modPackage.__getattr__("getModClass");
             System.out.format("Found mod class as %s\n", modSupplier.__call__().__getattr__("__name__").toString());

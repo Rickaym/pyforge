@@ -1,5 +1,5 @@
 # todo
-.todo
+*.todo
 
 # IDE stuff
 *.iml
