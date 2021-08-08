@@ -41,14 +41,14 @@ Status
 
 What's been done?
 ------------------
-☑ Proof of concept has been tested and proven working
-☑ Recursive PyObject Loading - Gets the mod class using a supplier
-☑ Single Decorator to handle complete Java to Python integration
-☑ Mod Decorator
-☐ Improved PyObject Loading
-☐ Mod Capability Testing
-☐ Rewrite build.gradle and properties
-☐ Interpolation with core Forge mechanisms
+| ☑ Proof of concept has been tested and proven working
+| ☑ Recursive PyObject Loading - Gets the mod class using a supplier
+| ☑ Single Decorator to handle complete Java to Python integration
+| ☑ Mod Decorator
+| ☐ Improved PyObject Loading
+| ☐ Mod Capability Testing
+| ☐ Rewrite build.gradle and properties
+| ☐ Interpolation with core Forge mechanisms
 
 Contribution and Beta Testing
 =================================
