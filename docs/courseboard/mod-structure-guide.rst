@@ -50,7 +50,7 @@ Add the language provider package into your ``sys.path`` as directed below. This
 
    import sys, os
 
-   sys.path.append(os.path.abspath("main.jython.rickaym.main/jython/rickaym/minecraftpy"))
+   sys.path.append(os.path.abspath("main.jython.rickaym.main/jython/rickaym/pyminecraft"))
 
    from Mod import Mod # imports will now search the lang provider package
 

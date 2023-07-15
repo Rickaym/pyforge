@@ -36,7 +36,7 @@ The run configuration injects some Metadata into the environment variables in th
 How does the language provider interact with the internal FML system?
 ---------------------------------------------------------------------
 
-1. The Language Provider is placed inside the mods directory and is loaded as a ServiceLoader from the classpath - as with all service loaders, it is guided by the ``.IModLanguageProvider`` file inside meta info's services,``META-INF/services`` referenced in the code as ``providerEntry``. Watch `this <https://youtu.be/iLPIUaNV-Kc`_ to learn more about service loaders.
+1. The Language Provider is placed inside the mods directory and is loaded as a ServiceLoader from the classpath - as with all service loaders, it is guided by the ``net.minecraftforge.forgespi.language.IModLanguageProvider`` file inside services,``META-INF/services`` referenced in the code as ``providerEntry``. Watch :ref:`here <https://youtu.be/iLPIUaNV-Kc>`_ and read :ref:`read here <https://stackoverflow.com/questions/4544899/java-meta-inf-services>`_ to learn more about how this system works.
 
 Let's assume that we've made a language provider called UServiceProvided and have inserted it into the meta-inf folder.
 
