@@ -1,23 +1,20 @@
 .. _`Minecraft Forge`: https://github.com/MinecraftForge/MinecraftForge
 .. _Java: https://www.java.com/
 
-Minecraft Java Edition
-========================
+Introduction
+============
+
+Minecraft Version
+-----------------
 
 .. image:: _static/Minecraft_cover.png
 
-Minecraft Java Edition is written in Java_. 
-
-All references throughout the documentation of **Minecraft** can be assumed to be in reference of Minecraft Java Edition unless explicitly defined.
-
-Over it's release since 2009, there has been `a decade rich of updates <https://minecraft.fandom.com/wiki/Java_Edition_version_history>`_. This edition of Minecraft spans over Windows, Linux and macOS — although crossplay over other Minecraft editions aren't possible *yet*.
-
-This project is expected to start in the latest version ``1.16.5`` and proceeding regressively until ``1.8.0`` MDK provided by `Minecraft Forge`_.
+This project is aimed at the version ``1.16.5`` and proceeding regressively until ``1.8.0`` MDK provided by `Minecraft Forge`_.
 
 Java
-=======
+=====
 
-Why do I have to read about Java? Because `Java`_ is an integral part of Minecraft, and it will neither be short-lived in this project either. 
+Why do I have to read about Java? Because `Java`_ is an integral part of Minecraft, and it will neither be short-lived in this project either.
 
 Minecraft as of present is packaged with it's own Java to run on. Although this isn't shared with bundled mods as you will find out further down the document.
 
@@ -39,6 +36,6 @@ Did someone say Minecraft Modding?
 
 Introducing 3rd party modding APIs.
 
-There is a variety of modding APIs to choose from — as of currently, to name a few; fabric, forge, sponge etc.. This project as per described in the introduction is meant on providing a language adapter for `Minecraft Forge`_. 
+There is a variety of modding APIs to choose from — as of currently, to name a few; fabric, forge, sponge etc.. This project as per described in the introduction is meant on providing a language adapter for `Minecraft Forge`_.
 
 MinecraftForge has an official documentation for modding `here <https://mcforge.readthedocs.io/en/latest/gettingstarted/>`_ that explains a great deal of information regarded to modding with it's framework.

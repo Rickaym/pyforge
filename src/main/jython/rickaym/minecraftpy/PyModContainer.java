@@ -5,8 +5,8 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingStage;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
-
-import javax.management.AttributeNotFoundException;
+import org.python.core.PyClass;
+import org.python.core.PyObject;
 
 /**
  * <strong>Currently holds no true implementation.</strong>
@@ -23,30 +23,26 @@ import javax.management.AttributeNotFoundException;
 public class PyModContainer extends ModContainer {
 
     /** Integrated @Mod Java instance **/
-    private Object modInstance;
+    private IPyModClass modInstance;
 
     /**
-     * PyModContainer to.. presumably contain mods :)
-     * More seriously.. it acts as a wrapper for mod files.
      * Puts the appropriate mod instantiation method `constructMod` on the activity
-     * map. It is called accordingly.
+     * map. It is called somewhere deep in the fml accordingly.
      *
      * @param info      IModInfo is an interface with getters and setters that fetches corresponding mod data, this surmises a mod
      */
-    PyModContainer (final IModInfo info, String className, final ClassLoader loader, final ModFileScanData scandata) throws AttributeNotFoundException {
+    PyModContainer (final IModInfo info, String className, final ClassLoader loader, final ModFileScanData scandata) {
         // Calls the ModContainer constructor, this will do the job of registering the modId,
         // reserve a name space and instantiate the mod loading stage
         super(info);
         activityMap.put(ModLoadingStage.CONSTRUCT, this::constructMod);
-        this.contextExtension = () -> contextExtension;
         //this.eventBus = BusBuilder.builder().setExceptionHandler(this::onEventFailed).setTrackPahses(false).markerType(IModBusEvent.class).build();
     }
 
-    private void constructMod() {
-        try {
-            this.modInstance = PyClassLoader.loads();
-        } catch (AttributeNotFoundException e) {
-            e.printStackTrace();
+    private void constructMod() throws ClassNotFoundException {
+        this.modInstance = PyClassLoader.loads();
+        if (this.modInstance == null) {
+            throw new ClassNotFoundException("jython.rickaym.minecraftpy could not find the class");
         }
         System.out.format("Loaded mod instance with name %s", this.modInstance.toString());
     }
@@ -69,12 +65,4 @@ public class PyModContainer extends ModContainer {
     public Object getMod() {
         return modInstance;
     }
-
-    //private void onEventFailed(IEventBus iEventBus, Event event, IEventListener[] iEventListeners, int i, Throwable throwable) {
-    //    LOGGER.error(new EventBusErrorMessage(event, i, iEventListeners, throwable));
-    //}
-
-    //public IEventBus getEventBus() {
-    //    return this.eventBus;
-    //}
 }

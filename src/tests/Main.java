@@ -5,15 +5,16 @@ import main.jython.rickaym.minecraftpy.PyClassLoader;
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
 
+
 import javax.management.AttributeNotFoundException;
 import java.io.File;
 
 public class Main {
     static String package_path = "C:/Users/User/Documents/Programming/Java/far_away_package";
 
-    public static void main(String[] args) throws AttributeNotFoundException {
+    public static void main(String[] args) {
         IPyModClass my_class = PyClassLoader.loads();
-        my_class.register()
+        System.out.println(my_class);
     }
 
     public static void test_terpreter() {

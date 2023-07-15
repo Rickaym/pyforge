@@ -3,44 +3,27 @@
 
 .. image:: https://readthedocs.org/projects/minecraft-py/badge/?version=latest
    :alt: Documentation Status
+   :target: https://minecraft-py.readthedocs.io/en/latest/
+
 
 Getting Started
 =================
-What is minecraft.py?
---------------------------
-A Python language provider for `Minecraft Forge`_. This project utilizes Jython_. When finished will support 2.7.x Python implementation of a Forge Mod.
 
-Clearing up the air.
+Minecraft.py is a Python language provider crafted for Minecraft Forge. It leverages the Jython_ Python implementation that operates on the JVM. The module is compatible with Python 2.7.x and is designed to support the implementation of a Forge Mod.
 
-This project strictly entails of `Minecraft Java Edition <https://www.minecraft.net/en-us/store/minecraft-java-edition>`_ and the subdivision of releases under it's name.
+We created Minecraft.py as a way to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
 
-Assume when you see *"Minecraft Mods"* to be a reference to Java Edition unless defined explicitly.
-There are other Minecraft versions I don't intend to embrace as yet such as;
+Project Status
+==============
 
-- `Minecraft Bedrock Edition <https://www.minecraft.net/en-us/store/minecraft-windows100>`_ :: written in C++ and only available on Windows Machines.
-- `Minecraft Pocket Edition <https://play.google.com/store/apps/details?id=com.mojang.minecraftpe&hl=en&gl=US>`_ :: written in C++ and supports iOS and Android. Whilst a port of Pocket Edition was released for Windows Phone 8.1 back in 2014 as well.
-
-
-.. tip:: I'll give you a better one!
-
-**Why is minecraft.py?**
-To introduce pre-existing Python devs to Minecraft modding and offer an alternative language for scripting in that is only as elegant as Python.
-
-**How is minecraft.py?**
-That's exactly what we'll be discussing throughout the documentation! See `readthedocs <https://minecraft-py.readthedocs.io/en/latest/>`_.
-
-Status
-========
-
-- **[01/07/2021]** First of July 2021 Marks the initiation date of this project.
-  This project is in an early state of development.
+Our journey started on July 1, 2021. We are currently in the early stages of development and are excited about the progress we're making.
 
 .. warning::
 
-  This project is **on-going**! It has not been completed nor proven working.
+  This project is **on-going**! It has not been completed but proven working.
 
-What's been done?
-------------------
+Achievements & Future Plans
+---------------------------
 | ☑ Proof of concept has been tested and proven working
 | ☑ Recursive PyObject Loading - Gets the mod class using a supplier
 | ☑ Single Decorator to handle complete Java to Python integration
@@ -53,9 +36,6 @@ What's been done?
 Contribution and Beta Testing
 =================================
 
-Contributions are most certainly welcome!
-To contribute on this project, you must read `docs <https://github.com/Rickaym/pyminecraft/tree/main.jython.rickaym.main/docs/contributions.rst>`_ and all the information provided at your disposal in the docs folder.
+Contributions are open, to contribute on this project, you must read the documentation atand all the information provided at your disposal in the docs folder.
+For inquiry, contact `Neo#1844` or join `this discord server <https://discord.gg/UmnzdPgn6g>`_. B)
 
-Contact me at `Neo#1844` through discord or join `this <https://discord.gg/UmnzdPgn6g>`_. B)
-
-~

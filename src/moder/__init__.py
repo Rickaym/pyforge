@@ -9,4 +9,4 @@ the right class without much noise.
 Notice the name `getModClass` - stick with that name.
 """
 
-getModClass = lambda: ModClass
+getModClass = lambda: ModClass()

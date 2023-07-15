@@ -3,7 +3,6 @@ package main.jython.rickaym.minecraftpy;
 
 import org.python.core.*;
 
-import javax.management.AttributeNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -18,13 +17,12 @@ import java.util.function.BiFunction;
  */
 public class PyClassLoader {
     private static final File root = new File("../src");
-    private static final String absoluteRootPath = root.getAbsolutePath();
 
-    private final ArrayList<String> loadedModules = new ArrayList<>();
+    private ArrayList<String> loadedModules = new ArrayList<>();
 
-    private PyObject modPackage;
-    private PyObject modPointer;
-    private IPyModClass modClass;
+    private IPyModClass modInstance;
+    private final PySystemState sys = new PySystemState();
+    private final PyObject importer = sys.getBuiltins().__getitem__(Py.newString("__import__"));
 
     private static final BiFunction<File, String, String> getFullPath = (root, dir) -> String.format("%s\\%s", root.getPath(), dir);
 
@@ -34,52 +32,56 @@ public class PyClassLoader {
      *
      * This method is recursive.
      */
-    private PyClassLoader gatherPyModules(File root) {
+    private void gatherPyModules(File root) {
         String[] subDirs = root.list();
         if (subDirs != null) {
             for (String subDir : subDirs) {
                 if (subDir.equals("__init__.py") &! this.loadedModules.contains(subDir)) {
-                    this.loadedModules.add(PyClassLoader.getFullPath.apply(root, subDir));
+                    String certainLevelPackage = PyClassLoader.getFullPath.apply(root, subDir);
+                    System.out.format("Found %s file to go through.\n", certainLevelPackage);
+                    this.initializeModule(certainLevelPackage);
                 } else if (!new File(PyClassLoader.getFullPath.apply(root, subDir)).isFile() &! subDir.equals("jython")) {
                     this.gatherPyModules(new File(PyClassLoader.getFullPath.apply(root, subDir)));
                 }
             }
-        }
-        // for method chaining
-        return this;
+        } 
     }
 
-    private void initializePyModules() throws AttributeNotFoundException {
-        PySystemState sys = new PySystemState();
-        PyObject importer = sys.getBuiltins().__getitem__(Py.newString("__import__"));
+    private void initializeModule(String certainLevelPackage) {
+        String[] descPath = certainLevelPackage.replace("\\", "/").split("/");
+        System.out.format("Initializing mod classes at %s.\n", certainLevelPackage);
+        try {
+        PyObject modEntry = importer.__call__(Py.newString(descPath[descPath.length - 2]));
+        System.out.println("Finished importing the top level module.");
+        PyList attrs = (PyList) modEntry.__dir__();
 
-        String topLevelPackage = loadedModules
-                .stream().min((e1, e2) -> e1.length() < e2.length() ? -1 : 1).get();
-        String[] descPath = topLevelPackage.replace("\\", "/").split("/");
+        System.out.println("Finding the mod class supplier in the module.");
+        if (attrs.__contains__(Py.newString("getModClass"))) {
+            System.out.println("Fetched the getModClass supplier from the top level entry module.");
+            // calls the supplier to get the mod class
+            PyObject modClass = modEntry.__getattr__("getModClass");
+            // instantiates the mod class
+            PyObject pureModClass = modClass.__call__();
+            System.out.format("Found mod class %s.\n", pureModClass.__getattr__("__class__"));
 
-        modPackage = importer.__call__(Py.newString(descPath[descPath.length-2]));
-        PyList attrs = (PyList) modPackage.__dir__();
-
-        if (!attrs.__contains__(Py.newString("getModClass"))) {
-            throw new AttributeNotFoundException("You need a lambda expression in your __init__ file that returns the mod class with the name getModClass.");
-        } else {
-            PyObject modSupplier = modPackage.__getattr__("getModClass");
-            System.out.format("Found mod class as %s\n", modSupplier.__call__().__getattr__("__name__").toString());
-            PyObject pureModClass = modSupplier.__call__().__call__();
-            PyTuple modInfo = (PyTuple) pureModClass.__getattr__("__mod_meta__");
-            System.out.format("Modmetadata is given as %s\n", modInfo.toString());
-            modClass = (IPyModClass) pureModClass.__tojava__(IPyModClass.class);
+            modInstance = (IPyModClass) pureModClass.__tojava__(IPyModClass.class);
+            System.out.format("Instantiated the mod class at %s.\n", modInstance);
+            System.out.format("Mod-metadata is given as %s\n", modInstance.__mod_meta__().toString());
+        }
+        }
+         catch (PyException e) {
+            e.printStackTrace();
+            System.err.format("%s is a bad mod entry.\n", certainLevelPackage);
         }
     }
-
     /**
      * @return IPyModClass of Mod Class implementation
      */
-    public static IPyModClass loads() throws AttributeNotFoundException {
-        ArrayList<String> modules = new ArrayList<>();
+    public static IPyModClass loads() {
         PyClassLoader instance = new PyClassLoader();
-        instance.gatherPyModules(PyClassLoader.root).initializePyModules();
+        System.out.format("Gathering __init__.py files recursively inside root directory %s.\n", root);
+        instance.gatherPyModules(PyClassLoader.root);
 
-        return instance.modClass;
+        return instance.modInstance;
     }
 }
