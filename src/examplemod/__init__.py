@@ -1,4 +1,4 @@
-from examplemod.main import ModClass_ as ModClass
+from mymod import MyMod
 
 """
 Readily returns an instance of the mod class.
@@ -9,4 +9,4 @@ the right class without much noise.
 Notice the name `getModClass` - stick with that name.
 """
 
-getModClass = lambda: ModClass()
+getModClass = lambda: MyMod()

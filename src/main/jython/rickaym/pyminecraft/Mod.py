@@ -1,6 +1,6 @@
 from inspect import isclass
 
-from main.jython.rickaym.minecraftpy import IPyModClass
+from main.jython.rickaym.pyminecraft import IPyModClass
 
 """
 Main Mod Loader Class

@@ -1,6 +1,6 @@
 import sys, os
 
-sys.path.append(os.path.abspath("main/jython/rickaym/minecraftpy"))
+sys.path.append(os.path.abspath("main/jython/rickaym/pyminecraft"))
 
 from Mod import Mod
 
@@ -10,7 +10,7 @@ from more_ext import MoreExt
 mod_id = "abc"
 
 @Mod(mod_id=mod_id)
-class ModClass_:
+class MyMod:
     """
     Exemplary implementation of the Mod class.
 

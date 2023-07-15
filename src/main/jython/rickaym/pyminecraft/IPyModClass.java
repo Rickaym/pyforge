@@ -1,4 +1,4 @@
-package main.jython.rickaym.minecraftpy;
+package main.jython.rickaym.pyminecraft;
 
 import org.python.core.PyTuple;
 
