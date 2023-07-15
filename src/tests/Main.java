@@ -1,12 +1,11 @@
 package tests;
 
-import main.jython.rickaym.minecraftpy.IPyModClass;
-import main.jython.rickaym.minecraftpy.PyClassLoader;
+import main.jython.rickaym.pyminecraft.IPyModClass;
+import main.jython.rickaym.pyminecraft.PyClassLoader;
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
 
 
-import javax.management.AttributeNotFoundException;
 import java.io.File;
 
 public class Main {
