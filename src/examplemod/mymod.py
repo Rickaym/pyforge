@@ -28,6 +28,7 @@ class MyMod:
         """
         Method to register things into appropriate registries
         """
+        print "Main register called."
         ExtensionClass.register()
         SecondExtensionClass.register()
         MoreExt.register()

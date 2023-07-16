@@ -1,10 +1,10 @@
 class ExtensionClass:
     @staticmethod
     def register():
-        pass
+        print "ExtensionClass register called."
 
 
 class SecondExtensionClass:
     @staticmethod
     def register():
-        pass
+        print "SecondExtensionClass register called."
