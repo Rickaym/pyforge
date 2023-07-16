@@ -1,7 +1,7 @@
 package tests;
 
 import main.jython.rickaym.pyminecraft.IPyModClass;
-import main.jython.rickaym.pyminecraft.PyClassLoader;
+import main.jython.rickaym.pyminecraft.PyModLoader;
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
 
@@ -12,8 +12,8 @@ public class Main {
     static String package_path = "C:/Users/User/Documents/Programming/Java/far_away_package";
 
     public static void main(String[] args) {
-        IPyModClass my_class = PyClassLoader.loads();
-        System.out.println(my_class);
+        IPyModClass myMod = PyModLoader.loadMod("examplemod");
+        myMod.register();
     }
 
     public static void test_terpreter() {

@@ -37,10 +37,11 @@ public class PyModContainer extends ModContainer {
 
         activityMap.put(ModLoadingStage.CONSTRUCT, this::constructMod);
         //this.eventBus = BusBuilder.builder().setExceptionHandler(this::onEventFailed).setTrackPahses(false).markerType(IModBusEvent.class).build();
+        PyModLoader.loadMod();
     }
 
     private void constructMod() {
-        this.modInstance = PyClassLoader.loads();
+        this.modInstance = PyModLoader.loadMod("");
         System.out.format("Loaded mod instance with name %s", this.modInstance.toString());
     }
 

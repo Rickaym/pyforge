@@ -33,7 +33,6 @@ public class PyLanguageProvider implements IModLanguageProvider {
         @SuppressWarnings("unchecked")
         public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
             try {
-
                 final Class<?> pyContainer = Class.forName("main.jython.rickaym.pyminecraft.PyModContainer", true,
                         Thread.currentThread()
                                 .getContextClassLoader());
@@ -52,11 +51,28 @@ public class PyLanguageProvider implements IModLanguageProvider {
     @Override
     public Consumer<ModFileScanData> getFileVisitor() {
         // probably the class which fetches the @Mod class and adds it to the scanResult
-        return scanData -> {
+        return scanResult -> {
+//            PyModLoader loader = new PyModLoader();
+//            loader.findEntryFiles("examplemod").findModEntryFile();
+//            Map<String, PyLanguageProvider.PyModTarget> modTargetMap = new HashMap<>();
+//            modTargetMap.put("examplemod", new PyLanguageProvider.PyModTarget("examplemod", "examplemod"));
+//            scanResult.addLanguageLoader(modTargetMap);
         };
+//
+//        return (scanResult) -> {
+//            Map<String, FMLJavaModLanguageProvider.FMLModTarget> modTargetMap = (Map)scanResult.getAnnotations().stream().filter((ad) -> {
+//                return ad.getAnnotationType().equals(MODANNOTATION);
+//            }).peek((ad) -> {
+//                LOGGER.debug(Logging.SCAN, "Found @Mod class {} with id {}", ad.getClassType().getClassName(), ad.getAnnotationData().get("value"));
+//            }).map((ad) -> {
+//                return new FMLJavaModLanguageProvider.FMLModTarget(ad.getClassType().getClassName(), (String)ad.getAnnotationData().get("value"));
+//            }).collect(Collectors.toMap(FMLJavaModLanguageProvider.FMLModTarget::getModId, Function.identity(), (a, b) -> {
+//                return a;
+//            }));
+//            scanResult.addLanguageLoader(modTargetMap);
+//        };
     }
 
     @Override
-    public <R extends ILifecycleEvent<R>> void consumeLifecycleEvent(Supplier<R> supplier) {
-    }
+    public <R extends ILifecycleEvent<R>> void consumeLifecycleEvent(Supplier<R> supplier) {}
 }
