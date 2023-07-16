@@ -33,8 +33,19 @@ An @Mod without a corresponding mod entry is marked as an error. The same happen
 The run configuration injects some Metadata into the environment variables in the Form of MOD_CLASSES
 "
 
-How does the language provider interact with the internal FML system?
----------------------------------------------------------------------
+How does the internal FML system load through LanguageProviders?
+----------------------------------------------------------------
+
+Note: ``fml`` is ``net.minecraftforge.fml`` in the codebase
+
+1. Mod loading starts in ``fml.Client.ClientModLoader:103``, calling ``fml.ModLoader.gatherAndInitializeMods(...)``
+2. ``fml.ModLoader.gatherAndInitializeMods:175`` calls ``fml.ModLoader.buildMods(...)`` to get ```ModContainer``s
+3. ``fml.ModLoader.buildMods:272`` calls ``fml.ModLoader.buildModContainerFromTOML(...)`` to build ``ModContainer``s
+4. in the  ``fml.ModLoader.buildModContainerFromTOML`` function, the ``IModLanguageLoader`` is parsed from the ``mods.toml`` file, it is then loaded as a service loader from the classpath
+5. the ``IModLanguageLoader`` is then used to load the mod container by calling ``IModLanguageLoader.loadMod(...)``.
+
+How does a language provider work?
+------------------------------------
 
 1. The Language Provider is placed inside the mods directory and is loaded as a ServiceLoader from the classpath - as with all service loaders, it is guided by the ``net.minecraftforge.forgespi.language.IModLanguageProvider`` file inside services,``META-INF/services`` referenced in the code as ``providerEntry``. Watch :ref:`here <https://youtu.be/iLPIUaNV-Kc>`_ and read :ref:`read here <https://stackoverflow.com/questions/4544899/java-meta-inf-services>`_ to learn more about how this system works.
 
