@@ -34,3 +34,5 @@ Makefile
 # bytecode
 *.class
 *$py.class
+
+/.gradle/
