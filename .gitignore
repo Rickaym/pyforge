@@ -35,4 +35,5 @@ Makefile
 *.class
 *$py.class
 
-/.gradle/
+.gradle/
+.gradlew/
