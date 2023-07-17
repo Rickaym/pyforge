@@ -1,8 +1,9 @@
-package main.jython.rickaym.pyminecraft;
-
+package rickaym.pyminecraft;
 
 import org.python.core.*;
 import org.python.jline.internal.Nullable;
+import org.python.util.PythonInterpreter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,25 +24,21 @@ import java.io.FileReader;
  * @see <a href="https://github.com/Rickaym/minecraft.py/tree/main/.info/examples/java-jython-integration">Examples</a>
  */
 public class PyModLoader {
-    private static final String ROOT = "../src";
     private static final String INIT_FILE_NAME = "__init__.py";
     private static final String MOD_GETTER_FUNCTION = "getModClass";
     private static final String IMPORT_FUNCTION = "__import__";
-
-    private IPyModClass modInstance;
-    private final PySystemState sys = new PySystemState();
-    private final PyObject importer = sys.getBuiltins()
-            .__getitem__(Py.newString(IMPORT_FUNCTION));
-    private static final String SEP = System.getProperty("file.separator");
-    public static List<Path> entryFiles;
-    public static String modEntryFilePath;
+    private static List<Path> entryFiles;
+    private static String modEntryFilePath;
+    private static final PythonInterpreter jyInterpreter = new PythonInterpreter();
+    private PyInstance modInstance;
 
     public PyModLoader findEntryFiles(String rootDir) {
         List<Path> files = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(Paths.get(rootDir))) {
-            files = paths
-                    .filter(Files::isRegularFile) // Filter out directories, we only want files
-                    .filter(path -> path.getFileName().toString().equals(INIT_FILE_NAME)) // Check if file name is __init__.py
+            files = paths.filter(Files::isRegularFile) // Filter out directories, we only want files
+                    .filter(path -> path.getFileName()
+                            .toString()
+                            .equals(INIT_FILE_NAME)) // Check if file name is __init__.py
                     .collect(Collectors.toList()); // Collect results to a list
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,12 +55,14 @@ public class PyModLoader {
         String entryFilePath = null;
         for (Path filePath : entryFiles) {
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile().getPath()));
+                BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()
+                        .getPath()));
                 String line = reader.readLine();
 
                 while (line != null && entryFilePath == null) {
                     if (line.contains(MOD_GETTER_FUNCTION)) {
-                        entryFilePath = filePath.toFile().getPath();
+                        entryFilePath = filePath.toFile()
+                                .getPath();
                         System.out.format("Found the mod entry file '%s'.\n", entryFilePath);
                     }
                     line = reader.readLine();
@@ -80,44 +79,64 @@ public class PyModLoader {
         return this;
     }
 
-    /**
-     * Initializes the module by importing the module and calling the mod getter function.
-     */
-    private IPyModClass initializeMod() {
+    private PyObject getModModule(String sourceDir) {
+        PyObject module;
         String[] descPath = modEntryFilePath.replace("\\", "/")
                 .split("/");
         System.out.format("Finding the mod class supplier function in %s.\n", modEntryFilePath);
+        String moduleName = descPath[descPath.length - 2];
+
+//  PYSYSTEMSTATE APPROACH - NOT WORKING
+//        PySystemState sys = new PySystemState();
+//        sys.path.append(Py.newString(sourceDir.replace("\\", "\\\\")));
+//        // Print the Python path after adding the directory
+//        PyObject importer = sys.getBuiltins()
+//                .__getitem__(Py.newString(IMPORT_FUNCTION));
+//        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
+//        module = importer.__call__(new PyString(moduleName));
+
+        jyInterpreter.exec("import sys");
+        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
+        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
+        module = jyInterpreter.get(moduleName);
+        System.out.println("Loaded module " + module);
+        return module;
+    }
+
+    /**
+     * Initializes the module by importing the module and calling the mod getter function.
+     */
+    private void initializeMod(String sourceDir) {
         try {
-            PyString moduleName = Py.newString(descPath[descPath.length - 2]);
-            PyObject modEntry = importer.__call__(moduleName);
-            System.out.format("Finished importing the top level module %s.\n", moduleName);
-            PyList attrs = (PyList) modEntry.__dir__();
+            PyObject modModule = getModModule(sourceDir);
+            PyList attrs = (PyList) modModule.__dir__();
 
             if (attrs.__contains__(Py.newString(MOD_GETTER_FUNCTION))) {
                 System.out.println("Fetched the getModClass supplier from the top level entry module.");
-                // calls the supplier to get the mod class
-                PyObject modClass = modEntry.__getattr__(MOD_GETTER_FUNCTION);
-                // instantiates the mod class
-                PyObject pureModClass = modClass.__call__();
-                modInstance = (IPyModClass) pureModClass.__tojava__(IPyModClass.class);
-                System.out.format("Instantiated the mod class '%s'.\n", modInstance);
-                System.out.format("Mod metadata is '%s'\n", modInstance.__mod_meta__()
-                        .toString());
+                PyObject modSupplier = modModule.__getattr__(MOD_GETTER_FUNCTION);
+                // calls on the mod supplier function to create the instance
+                modInstance = (PyInstance) modSupplier.__call__();
+                System.out.format("Instantiated the mod instance '%s'.\n", modInstance);
+                System.out.format("Mod metadata is '%s'\n", modInstance.invoke("__mod_meta__"));
             }
         } catch (PyException e) {
             e.printStackTrace();
             System.err.format("%s is a bad mod entry.\n", modEntryFilePath);
         }
-        return modInstance;
     }
 
     /**
      * @return IPyModClass of Mod Class implementation
      */
-    public static IPyModClass loadMod(String moduleName) {
-        PyModLoader instance = new PyModLoader();
-        String root = PyModLoader.ROOT + SEP + moduleName;
-        System.out.format("Gathering entry files recursively from the root directory '%s'.\n", root);
-        return instance.findEntryFiles(root).findModEntryFile().initializeMod();
+    public static WrappedModInstance loadMod(String sourceDir, String moduleName) {
+        PyModLoader loader = new PyModLoader();
+        String absModuleRoot = Paths.get(sourceDir, moduleName)
+                .toAbsolutePath()
+                .toString();
+        System.out.format("Gathering entry files recursively from the module root directory '%s'.\n", absModuleRoot);
+        loader.findEntryFiles(absModuleRoot)
+                .findModEntryFile()
+                .initializeMod(sourceDir);
+        return new WrappedModInstance(loader.modInstance);
     }
 }
