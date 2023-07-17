@@ -9,9 +9,9 @@
 Getting Started
 =================
 
-Minecraft.py is a Python language provider crafted for Minecraft Forge. It leverages the Jython_ Python implementation that operates on the JVM. The module is compatible with Python 2.7.x and is designed to support the implementation of a Forge Mod.
+pyminecraft is a Python language provider crafted for Minecraft Forge. It leverages the Jython_ Python implementation that operates on the JVM. The module is compatible with Python 2.7.x and is designed to support the implementation of a Forge Mod.
 
-We created Minecraft.py as a way to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
+We created pyminecraft as a way to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
 
 Project Status
 ==============
