@@ -1,15 +1,13 @@
-import sys, os
+import sys
 
-sys.path.append(os.path.abspath("main/jython/rickaym/pyminecraft"))
+sys.path.append("D:\\Programming\\Python\\Projects\\pyminecraft\\build\\libs\\pyminecraft-1.0.jar")
 
-from Mod import Mod
+from rickaym.pyminecraft import Mod
 
 from extension import ExtensionClass, SecondExtensionClass
 from more_ext import MoreExt
 
-mod_id = "abc"
-
-@Mod(mod_id=mod_id)
+@Mod(mod_id="abc")
 class MyMod:
     """
     Exemplary implementation of the Mod class.

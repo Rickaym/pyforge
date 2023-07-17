@@ -1,4 +1,4 @@
-package main.jython.rickaym.pyminecraft;
+package rickaym.pyminecraft;
 
 import net.minecraftforge.forgespi.language.ILifecycleEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
@@ -19,6 +19,7 @@ public class PyLanguageProvider implements IModLanguageProvider {
     public static class PyModTarget implements IModLanguageProvider.IModLanguageLoader {
         private final String className;
         private final String modId;
+        private final PyModLoader loader = new PyModLoader();
 
         private PyModTarget(String className, String modId) {
             this.className = className;
@@ -33,14 +34,14 @@ public class PyLanguageProvider implements IModLanguageProvider {
         @SuppressWarnings("unchecked")
         public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
             try {
-                final Class<?> pyContainer = Class.forName("main.jython.rickaym.pyminecraft.PyModContainer", true,
+                final Class<?> pyContainer = Class.forName("rickaym.pyminecraft.PyModContainer", true,
                         Thread.currentThread()
                                 .getContextClassLoader());
                 final Constructor<?> constructor;
                 constructor = pyContainer.getConstructor(IModInfo.class, String.class, ModFileScanData.class,
-                        ModFileScanData.class);
+                        ModuleLayer.class);
 
-                return (T) constructor.newInstance(info, className, modFileScanResults, modFileScanResults);
+                return (T) constructor.newInstance(info, className, modFileScanResults, ModuleLayer.boot());
             } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                      InvocationTargetException e) {
                 throw new RuntimeException(e);
@@ -74,5 +75,6 @@ public class PyLanguageProvider implements IModLanguageProvider {
     }
 
     @Override
-    public <R extends ILifecycleEvent<R>> void consumeLifecycleEvent(Supplier<R> supplier) {}
+    public <R extends ILifecycleEvent<R>> void consumeLifecycleEvent(Supplier<R> supplier) {
+    }
 }
