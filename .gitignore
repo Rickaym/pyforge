@@ -25,6 +25,7 @@ __pycache__
 
 # sphinx
 build
+run
 _build
 _static
 _templates
@@ -36,3 +37,4 @@ Makefile
 *$py.class
 
 .gradle/
+src/examplemod
