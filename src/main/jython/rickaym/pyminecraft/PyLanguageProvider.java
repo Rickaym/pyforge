@@ -1,16 +1,27 @@
 package rickaym.pyminecraft;
 
-import net.minecraftforge.forgespi.language.ILifecycleEvent;
-import net.minecraftforge.forgespi.language.IModInfo;
-import net.minecraftforge.forgespi.language.IModLanguageProvider;
-import net.minecraftforge.forgespi.language.ModFileScanData;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+import net.minecraftforge.forgespi.language.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static net.minecraftforge.fml.Logging.LOADING;
+
 
 public class PyLanguageProvider implements IModLanguageProvider {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public String name() {
         return "pyminecraft";
@@ -21,8 +32,8 @@ public class PyLanguageProvider implements IModLanguageProvider {
         private final String modId;
         private final PyModLoader loader = new PyModLoader();
 
-        private PyModTarget(String className, String modId) {
-            this.className = className;
+        private PyModTarget(String entryClass, String modId) {
+            this.className = entryClass;
             this.modId = modId;
         }
 
@@ -34,6 +45,7 @@ public class PyLanguageProvider implements IModLanguageProvider {
         @SuppressWarnings("unchecked")
         public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
             try {
+                LOGGER.debug(LOADING, "Loading pyminecraft language mod {}", info.getModId());
                 final Class<?> pyContainer = Class.forName("rickaym.pyminecraft.PyModContainer", true,
                         Thread.currentThread()
                                 .getContextClassLoader());
@@ -53,25 +65,14 @@ public class PyLanguageProvider implements IModLanguageProvider {
     public Consumer<ModFileScanData> getFileVisitor() {
         // probably the class which fetches the @Mod class and adds it to the scanResult
         return scanResult -> {
-//            PyModLoader loader = new PyModLoader();
-//            loader.findEntryFiles("examplemod").findModEntryFile();
-//            Map<String, PyLanguageProvider.PyModTarget> modTargetMap = new HashMap<>();
-//            modTargetMap.put("examplemod", new PyLanguageProvider.PyModTarget("examplemod", "examplemod"));
-//            scanResult.addLanguageLoader(modTargetMap);
+            Map<String, PyModTarget> modTargetMap = scanResult.getIModInfoData()
+                    .stream()
+                    .map((IModFileInfo infoData) -> ((ModInfo) infoData.getMods()
+                            .get(0)))
+                    .map(ad -> new PyModTarget((String) ad.getConfigElement("entryClass").orElse(null), ad.getModId()))
+                    .collect(Collectors.toMap(PyModTarget::getModId, Function.identity()));
+            scanResult.addLanguageLoader(modTargetMap);
         };
-//
-//        return (scanResult) -> {
-//            Map<String, FMLJavaModLanguageProvider.FMLModTarget> modTargetMap = (Map)scanResult.getAnnotations().stream().filter((ad) -> {
-//                return ad.getAnnotationType().equals(MODANNOTATION);
-//            }).peek((ad) -> {
-//                LOGGER.debug(Logging.SCAN, "Found @Mod class {} with id {}", ad.getClassType().getClassName(), ad.getAnnotationData().get("value"));
-//            }).map((ad) -> {
-//                return new FMLJavaModLanguageProvider.FMLModTarget(ad.getClassType().getClassName(), (String)ad.getAnnotationData().get("value"));
-//            }).collect(Collectors.toMap(FMLJavaModLanguageProvider.FMLModTarget::getModId, Function.identity(), (a, b) -> {
-//                return a;
-//            }));
-//            scanResult.addLanguageLoader(modTargetMap);
-//        };
     }
 
     @Override
