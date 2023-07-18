@@ -37,4 +37,5 @@ Makefile
 *$py.class
 
 .gradle/
-/src/examplemod/
+/src/examplemod2/
+/src/examplemod2/
