@@ -5,9 +5,7 @@ import net.minecraftforge.forgespi.language.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -28,12 +26,11 @@ public class PyLanguageProvider implements IModLanguageProvider {
     }
 
     public static class PyModTarget implements IModLanguageProvider.IModLanguageLoader {
-        private final String className;
+        private final String entryClass;
         private final String modId;
-        private final PyModLoader loader = new PyModLoader();
 
         private PyModTarget(String entryClass, String modId) {
-            this.className = entryClass;
+            this.entryClass = entryClass;
             this.modId = modId;
         }
 
@@ -45,15 +42,15 @@ public class PyLanguageProvider implements IModLanguageProvider {
         @SuppressWarnings("unchecked")
         public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
             try {
-                LOGGER.debug(LOADING, "Loading pyminecraft language mod {}", info.getModId());
+                LOGGER.debug(LOADING, "Loading mod '{}' at entry class '{}'", info.getModId(), entryClass);
                 final Class<?> pyContainer = Class.forName("rickaym.pyminecraft.PyModContainer", true,
                         Thread.currentThread()
                                 .getContextClassLoader());
                 final Constructor<?> constructor;
-                constructor = pyContainer.getConstructor(IModInfo.class, String.class, ModFileScanData.class,
-                        ModuleLayer.class);
-
-                return (T) constructor.newInstance(info, className, modFileScanResults, ModuleLayer.boot());
+                constructor = pyContainer.getConstructor(IModInfo.class, String.class);
+                T modContainer = (T) constructor.newInstance(info, entryClass);
+                LOGGER.debug(LOADING, "Loaded mod container {}", modContainer);
+                return modContainer;
             } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                      InvocationTargetException e) {
                 throw new RuntimeException(e);
@@ -69,8 +66,10 @@ public class PyLanguageProvider implements IModLanguageProvider {
                     .stream()
                     .map((IModFileInfo infoData) -> ((ModInfo) infoData.getMods()
                             .get(0)))
-                    .map(ad -> new PyModTarget((String) ad.getConfigElement("entryClass").orElse(null), ad.getModId()))
+                    .map(ad -> new PyModTarget((String) ad.getConfigElement("entryClass")
+                            .orElse(null), ad.getModId()))
                     .collect(Collectors.toMap(PyModTarget::getModId, Function.identity()));
+            LOGGER.debug(LOADING, "Adding into language loader mod target map {}", modTargetMap);
             scanResult.addLanguageLoader(modTargetMap);
         };
     }

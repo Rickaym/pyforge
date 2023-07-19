@@ -4,7 +4,7 @@ import org.python.core.*;
 import org.python.jline.internal.Nullable;
 import org.python.util.PythonInterpreter;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static net.minecraftforge.fml.Logging.LOADING;
 
 /**
  * Intermediary module loader for the mod classes and extension classes.
@@ -31,6 +34,7 @@ public class PyModLoader {
     private static String modEntryFilePath;
     private static final PythonInterpreter jyInterpreter = new PythonInterpreter();
     private PyInstance modInstance;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public PyModLoader findEntryFiles(String rootDir) {
         List<Path> files = new ArrayList<>();
@@ -63,7 +67,7 @@ public class PyModLoader {
                     if (line.contains(MOD_GETTER_FUNCTION)) {
                         entryFilePath = filePath.toFile()
                                 .getPath();
-                        System.out.format("Found the mod entry file '%s'.\n", entryFilePath);
+                        LOGGER.debug(LOADING, "Found the mod entry file '{}'.\n", entryFilePath);
                     }
                     line = reader.readLine();
                 }
@@ -83,7 +87,7 @@ public class PyModLoader {
         PyObject module;
         String[] descPath = modEntryFilePath.replace("\\", "/")
                 .split("/");
-        System.out.format("Finding the mod class supplier function in %s.\n", modEntryFilePath);
+        LOGGER.debug(LOADING, "Finding the mod class supplier function in {}.\n", modEntryFilePath);
         String moduleName = descPath[descPath.length - 2];
 
 //  PYSYSTEMSTATE APPROACH - NOT WORKING
@@ -99,7 +103,7 @@ public class PyModLoader {
         jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
         jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
         module = jyInterpreter.get(moduleName);
-        System.out.println("Loaded module " + module);
+        LOGGER.debug(LOADING, "Loaded in module '{}'", module);
         return module;
     }
 
@@ -112,16 +116,17 @@ public class PyModLoader {
             PyList attrs = (PyList) modModule.__dir__();
 
             if (attrs.__contains__(Py.newString(MOD_GETTER_FUNCTION))) {
-                System.out.println("Fetched the getModClass supplier from the top level entry module.");
+                LOGGER.debug(LOADING, "Fetched the getModClass supplier from the top level entry module.");
                 PyObject modSupplier = modModule.__getattr__(MOD_GETTER_FUNCTION);
                 // calls on the mod supplier function to create the instance
                 modInstance = (PyInstance) modSupplier.__call__();
-                System.out.format("Instantiated the mod instance '%s'.\n", modInstance);
-                System.out.format("Mod metadata is '%s'\n", modInstance.invoke("__mod_meta__"));
+                LOGGER.debug(LOADING, "Instantiated the mod instance '{}' with metadata {}.\n", modInstance,
+                        modInstance.invoke("__mod_meta__"));
             }
         } catch (PyException e) {
-            e.printStackTrace();
-            System.err.format("%s is a bad mod entry.\n", modEntryFilePath);
+            ByteArrayOutputStream err = new ByteArrayOutputStream();
+            e.printStackTrace(new PrintStream(err));
+            LOGGER.fatal(LOADING, "'{}' raised an error {}.", modEntryFilePath, err.toString());
         }
     }
 
@@ -133,7 +138,8 @@ public class PyModLoader {
         String absModuleRoot = Paths.get(sourceDir, moduleName)
                 .toAbsolutePath()
                 .toString();
-        System.out.format("Gathering entry files recursively from the module root directory '%s'.\n", absModuleRoot);
+        LOGGER.debug(LOADING, "Gathering entry files recursively from the module root directory '{}'.\n",
+                absModuleRoot);
         loader.findEntryFiles(absModuleRoot)
                 .findModEntryFile()
                 .initializeMod(sourceDir);
