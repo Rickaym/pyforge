@@ -1,0 +1,23 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.0.2] - 2023-07-19
+
+### Added
+
+- Decorator to transfer mod metadata to pymod
+- Language provider to interacts with the FML system
+- Mod loader to load mods from the mods folder
+- Mod container to provide arms length access to FML
+- Wrapped mod container to provide a java interface to mod instances
+
+## [0.0.1] - 2021-07-01
+
+### Added
+
+- Preliminary project setup
+- Jython Class Loader
