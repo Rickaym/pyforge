@@ -9,7 +9,7 @@
 Getting Started
 =================
 
-pyminecraft is a Python language provider crafted for Minecraft Forge. It leverages the Jython_ Python implementation that operates on the JVM. The module is compatible with Python 2.7.x and is designed to support the implementation of a Forge Mod. `See an examplary mod implemented using the language provider here <https://github.com/Rickaym/pymod>`_.
+**pyminecraft** is a Python language provider crafted for Minecraft Forge. It leverages the Jython_ Python implementation that operates on the JVM. The module is compatible with Python 2.7.x and is designed to support the implementation of a Forge Mod. `See an examplary mod implemented using the language provider here <https://github.com/Rickaym/pymod>`_.
 
 We created pyminecraft as a way to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
 
@@ -24,14 +24,12 @@ Our journey started on July 1, 2021. We are currently in the early stages of dev
 
 Achievements & Future Plans
 ---------------------------
-| ☑ Proof of concept has been tested and proven working
-| ☑ Recursive PyObject Loading - Gets the mod class using a supplier
-| ☑ Single Decorator to handle complete Java to Python integration
+| ☑ Loading Jython Classes
+| ☑ Transferring mod metadata through the use of a decorator
 | ☑ Mod Decorator
-| ☐ Improved PyObject Loading
-| ☐ Mod Capability Testing
-| ☐ Rewrite build.gradle and properties
-| ☐ Interpolation with core Forge mechanisms
+| ☐ pyminecraft Jar injection into pymod
+| ☐ Testing
+| ☐ Documentation
 
 Contribution and Beta Testing
 =================================
