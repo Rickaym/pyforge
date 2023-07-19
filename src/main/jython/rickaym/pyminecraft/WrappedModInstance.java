@@ -15,7 +15,7 @@ public class WrappedModInstance {
         modInstance.invoke("register");
     }
 
-    public Map<String, String> modMeta() {
+    public Map<String, String> getModMeta() {
         PyTuple ret = (PyTuple) modInstance.invoke("__mod_meta__");
         Map<String, String> modMeta = new java.util.HashMap<>();
         for (int i = 0; i < ret.__len__(); i++) {
