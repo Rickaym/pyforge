@@ -32,7 +32,8 @@ public class PyModLoader {
     private static final String IMPORT_FUNCTION = "__import__";
     private static List<Path> entryFiles;
     private static String modEntryFilePath;
-    private static PySystemState sys = new PySystemState();
+//    private static PySystemState sys = new PySystemState();
+    private static PythonInterpreter jyInterpreter = new PythonInterpreter();
     private PyInstance modInstance;
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -90,16 +91,15 @@ public class PyModLoader {
         LOGGER.debug(LOADING, "Finding the mod class supplier function in {}.\n", modEntryFilePath);
         String moduleName = descPath[descPath.length - 2];
 
-        sys.path.append(Py.newString(sourceDir));
-        PyObject importer = sys.getBuiltins()
-                .__getitem__(Py.newString(IMPORT_FUNCTION));
-        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
-        module = importer.__call__(Py.newString(moduleName));
-//
-//        jyInterpreter.exec("import sys");
-//        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
-//        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
-//        module = jyInterpreter.get(moduleName);
+//        sys.path.append(Py.newString(sourceDir));
+//        PyObject importer = sys.getBuiltins()
+//                .__getitem__(Py.newString(IMPORT_FUNCTION));
+//        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
+//        module = importer.__call__(Py.newString(moduleName));
+        jyInterpreter.exec("import sys");
+        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
+        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
+        module = jyInterpreter.get(moduleName);
         LOGGER.debug(LOADING, "Loaded in module '{}'", module);
         return module;
     }
@@ -108,22 +108,16 @@ public class PyModLoader {
      * Initializes the module by importing the module and calling the mod getter function.
      */
     private void initializeMod(String sourceDir) {
-        try {
-            PyObject modModule = getModModule(sourceDir);
-            PyList attrs = (PyList) modModule.__dir__();
+        PyObject modModule = getModModule(sourceDir);
+        PyList attrs = (PyList) modModule.__dir__();
 
-            if (attrs.__contains__(Py.newString(MOD_GETTER_FUNCTION))) {
-                LOGGER.debug(LOADING, "Fetched the getModClass supplier from the top level entry module.");
-                PyObject modSupplier = modModule.__getattr__(MOD_GETTER_FUNCTION);
-                // calls on the mod supplier function to create the instance
-                modInstance = (PyInstance) modSupplier.__call__();
-                LOGGER.debug(LOADING, "Instantiated the mod instance '{}' with metadata {}.\n", modInstance,
-                        modInstance.invoke("__mod_meta__"));
-            }
-        } catch (PyException e) {
-            ByteArrayOutputStream err = new ByteArrayOutputStream();
-            e.printStackTrace(new PrintStream(err));
-            LOGGER.fatal(LOADING, "'{}' raised an error {}.", modEntryFilePath, err.toString());
+        if (attrs.__contains__(Py.newString(MOD_GETTER_FUNCTION))) {
+            LOGGER.debug(LOADING, "Fetched the getModClass supplier from the top level entry module.");
+            PyObject modSupplier = modModule.__getattr__(MOD_GETTER_FUNCTION);
+            // calls on the mod supplier function to create the instance
+            modInstance = (PyInstance) modSupplier.__call__();
+            LOGGER.debug(LOADING, "Instantiated the mod instance '{}' with metadata {}.\n", modInstance,
+                    modInstance.invoke("__mod_meta__"));
         }
     }
 
