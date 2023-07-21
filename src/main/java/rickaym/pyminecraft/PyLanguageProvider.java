@@ -22,7 +22,7 @@ public class PyLanguageProvider implements IModLanguageProvider {
 
     @Override
     public String name() {
-        return "rickaym/pyminecraft";
+        return "pyminecraft";
     }
 
     public static class PyModTarget implements IModLanguageProvider.IModLanguageLoader {
