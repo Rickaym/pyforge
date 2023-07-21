@@ -32,7 +32,7 @@ public class PyModLoader {
     private static final String IMPORT_FUNCTION = "__import__";
     private static List<Path> entryFiles;
     private static String modEntryFilePath;
-    private static final PythonInterpreter jyInterpreter = new PythonInterpreter();
+    private static PySystemState sys = new PySystemState();
     private PyInstance modInstance;
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -90,19 +90,16 @@ public class PyModLoader {
         LOGGER.debug(LOADING, "Finding the mod class supplier function in {}.\n", modEntryFilePath);
         String moduleName = descPath[descPath.length - 2];
 
-//  PYSYSTEMSTATE APPROACH - NOT WORKING
-//        PySystemState sys = new PySystemState();
-//        sys.path.append(Py.newString(sourceDir.replace("\\", "\\\\")));
-//        // Print the Python path after adding the directory
-//        PyObject importer = sys.getBuiltins()
-//                .__getitem__(Py.newString(IMPORT_FUNCTION));
-//        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
-//        module = importer.__call__(new PyString(moduleName));
-
-        jyInterpreter.exec("import sys");
-        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
-        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
-        module = jyInterpreter.get(moduleName);
+        sys.path.append(Py.newString(sourceDir));
+        PyObject importer = sys.getBuiltins()
+                .__getitem__(Py.newString(IMPORT_FUNCTION));
+        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
+        module = importer.__call__(Py.newString(moduleName));
+//
+//        jyInterpreter.exec("import sys");
+//        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
+//        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
+//        module = jyInterpreter.get(moduleName);
         LOGGER.debug(LOADING, "Loaded in module '{}'", module);
         return module;
     }
