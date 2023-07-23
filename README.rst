@@ -1,6 +1,11 @@
 .. _`Minecraft Forge`: https://github.com/MinecraftForge/MinecraftForge
 .. _Jython: https://www.jython.org
 
+.. image:: https://raw.githubusercontent.com/Rickaym/pyforge/main/docs/logo.png
+   :alt: pyforge logo
+   :height: 20ex
+
+
 .. image:: https://readthedocs.org/projects/minecraft-py/badge/?version=latest
    :alt: Documentation Status
    :target: https://minecraft-py.readthedocs.io/en/latest/
