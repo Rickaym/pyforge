@@ -1,4 +1,4 @@
-package rickaym.pyminecraft;
+package rickaym.pyforge;
 
 import net.minecraftforge.eventbus.EventBusErrorMessage;
 import net.minecraftforge.eventbus.api.BusBuilder;

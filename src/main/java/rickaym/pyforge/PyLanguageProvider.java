@@ -1,4 +1,4 @@
-package rickaym.pyminecraft;
+package rickaym.pyforge;
 
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 import net.minecraftforge.forgespi.language.*;
@@ -22,7 +22,7 @@ public class PyLanguageProvider implements IModLanguageProvider {
 
     @Override
     public String name() {
-        return "pyminecraft";
+        return "pyforge";
     }
 
     public static class PyModTarget implements IModLanguageProvider.IModLanguageLoader {
@@ -43,7 +43,7 @@ public class PyLanguageProvider implements IModLanguageProvider {
         public <T> T loadMod(final IModInfo info, final ClassLoader modClassLoader, final ModFileScanData modFileScanResults) {
             try {
                 LOGGER.debug(LOADING, "Loading mod '{}' at entry class '{}'", info.getModId(), entryClass);
-                final Class<?> pyContainer = Class.forName("rickaym.pyminecraft.PyModContainer", true,
+                final Class<?> pyContainer = Class.forName("rickaym.pyforge.PyModContainer", true,
                         Thread.currentThread()
                                 .getContextClassLoader());
                 final Constructor<?> constructor;

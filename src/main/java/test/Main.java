@@ -4,7 +4,7 @@ import org.python.core.Py;
 import org.python.core.PyObject;
 import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
-import rickaym.pyminecraft.PyModLoader;
+import rickaym.pyforge.PyModLoader;
 
 import java.nio.file.Paths;
 

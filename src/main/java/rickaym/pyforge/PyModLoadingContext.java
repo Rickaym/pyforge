@@ -1,4 +1,4 @@
-package rickaym.pyminecraft;
+package rickaym.pyforge;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;

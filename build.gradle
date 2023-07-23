@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.0.2'
-group = 'rickaym.pyminecraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'rickaym.pyforge' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(14) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -28,7 +28,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                pyminecraft {
+                pyforge {
                     source sourceSets.main
                 }
             }
@@ -40,7 +40,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                pyminecraft {
+                pyforge {
                     source sourceSets.main
                 }
             }
@@ -62,12 +62,12 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'pyminecraft', '--all',
+            args '--mod', 'pyforge', '--all',
                     '--existing', file('src/main/resources/').toString(),
                     '--existing', file('src/generated/resources/').toString(),
                     '--output', file('src/generated/resources/')
             mods {
-                pyminecraft {
+                pyforge {
                     source sourceSets.main
                 }
             }
@@ -100,7 +100,7 @@ jar {
             "Specification-Title": "Mod Language Provider",
             "Specification-Vendor": "Forge",
             "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": "pyminecraft",
+            "Implementation-Title": "pyforge",
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"Rickaym",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),

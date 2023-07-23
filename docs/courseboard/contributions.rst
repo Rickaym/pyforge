@@ -36,7 +36,7 @@ Minecraft Forge
 ^^^^^^^^^^^^^^^^^
 This is the framework you will be working with. It is necessary that you understand the basic aspects of Minecraft Forge if not complex mod loading mechanisms. Understanding the basic concepts of mod making will also be very useful in learning low level concepts within Forge.
 
-pyminecraft
+pyforge
 ^^^^^^^^^^^^^
 Yep, this project. You need to understand this project before you contribute anything. This project is heavily documented by Ricky contemporary to development. All the information needed to understand this project is well documented and will be provided in readthedocs.
 

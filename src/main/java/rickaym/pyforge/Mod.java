@@ -1,4 +1,4 @@
-package rickaym.pyminecraft;
+package rickaym.pyforge;
 
 import org.python.core.*;
 
