@@ -1,6 +1,6 @@
 <image src="https://raw.githubusercontent.com/Rickaym/pyforge/main/docs/logo.png" height="200px">
 
-![Static Badge](https://img.shields.io/badge/Download-1a73e8?style=for-the-badge)
+<a href="https://www.curseforge.com/minecraft/mc-mods/pyforge">![Static Badge](https://img.shields.io/badge/Download-1a73e8?style=for-the-badge)</a>
 # Getting Started
 
 **PyForge** is a Python language provider crafted for Minecraft Forge. It leverages the Jython implementation of Python that runs on the JVM. The module is compatible with Python 2.7.x and is designed to support a comprehensive implementation of a Forge Mod. [See an example mod using here](https://github.com/Rickaym/pymod).
