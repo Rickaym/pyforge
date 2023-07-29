@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "minecraft.py"
+project = "pyforge"
 copyright = "2021, Ricky"
 author = "Ricky"
 

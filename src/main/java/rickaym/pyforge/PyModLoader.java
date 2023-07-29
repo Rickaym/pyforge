@@ -28,7 +28,7 @@ import static net.minecraftforge.fml.Logging.LOADING;
  */
 public class PyModLoader {
     private static final String INIT_FILE_NAME = "__init__.py";
-    private static final String MOD_GETTER_FUNCTION = "getModClass";
+    private static final String MOD_GETTER_FUNCTION = "get_mod_instance";
     private static final String IMPORT_FUNCTION = "__import__";
     private static List<Path> entryFiles;
     private static String modEntryFilePath;
@@ -112,7 +112,7 @@ public class PyModLoader {
         PyList attrs = (PyList) modModule.__dir__();
 
         if (attrs.__contains__(Py.newString(MOD_GETTER_FUNCTION))) {
-            LOGGER.debug(LOADING, "Fetched the getModClass supplier from the top level entry module.");
+            LOGGER.debug(LOADING, "Fetched the get_mod_instance supplier from the top level entry module.");
             PyObject modSupplier = modModule.__getattr__(MOD_GETTER_FUNCTION);
             // calls on the mod supplier function to create the instance
             modInstance = (PyInstance) modSupplier.__call__();
