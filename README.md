@@ -1,20 +1,23 @@
+# PyForge
+
 <image src="https://raw.githubusercontent.com/Rickaym/pyforge/main/docs/logo.png" height="200px">
 
 <a href="https://www.curseforge.com/minecraft/mc-mods/pyforge">![Static Badge](https://img.shields.io/badge/Download-1a73e8?style=for-the-badge)</a>
-# Getting Started
+
 
 **PyForge** is a Python language provider crafted for Minecraft Forge. It leverages the Jython implementation of Python that runs on the JVM. The module is compatible with Python 2.7.x and is designed to support a comprehensive implementation of a Forge Mod. [See an example mod using here](https://github.com/Rickaym/pymod).
 
-I created pyforge as a way to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
-
+I created pyforge to benchmark the capabilities of Jython and introduce Python developers to the exciting world of Minecraft modding.
 
 ```diff
-- This project is in the alpha stage, it is not yet ready to be used.
+- This project is in the alpha stage, use at your own discretion!
 ```
 
-## Directory Structure
+# Getting Started
 
-The directory structure of a mod using pyforge is the same as that of a mod implemented in Java. The only difference is that the package name will be the same as the mod id rather than in Java convention, i.e.,`com.rickaym.mod`.
+## Creating Your Mod
+
+The directory structure of a mod using pyforge is the same as that of a mod implemented in Java, therefore, you can start by instantiating the boilerplate code through a plugin with Java as the language. Keep note, you should set the package name to the mod id rather than your domain, i.e., `com.rickaym.mod`.
 
 E.g.
 ```py
