@@ -60,7 +60,6 @@ public class PyLanguageProvider implements IModLanguageProvider {
 
     @Override
     public Consumer<ModFileScanData> getFileVisitor() {
-        // probably the class which fetches the @Mod class and adds it to the scanResult
         return scanResult -> {
             Map<String, PyModTarget> modTargetMap = scanResult.getIModInfoData()
                     .stream()
