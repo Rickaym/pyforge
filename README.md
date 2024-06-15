@@ -1,4 +1,4 @@
-<image src="https://raw.githubusercontent.com/Rickaym/pyforge/main/docs/logo.png" height="200px">
+<image src="https://raw.githubusercontent.com/Rickaym/pyforge/main/docs/logo.png" height="200px"></image>
 
 <a href="https://www.curseforge.com/minecraft/mc-mods/pyforge">![Static Badge](https://img.shields.io/badge/Try%20Now-1a73e8?style=for-the-badge)</a>
 # Getting Started
