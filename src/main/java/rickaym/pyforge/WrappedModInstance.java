@@ -5,16 +5,25 @@ import org.python.core.PyTuple;
 
 import java.util.Map;
 
+/**
+ * Wraps a Python mod instance with a Java interface.
+ */
 public class WrappedModInstance {
-    private PyInstance modInstance;
+    private final PyInstance modInstance;
     WrappedModInstance(PyInstance instance) {
         modInstance = instance;
     }
 
+    /**
+     * Invokes the mod's inner register function.
+     */
     public void register() {
         modInstance.invoke("register");
     }
 
+    /**
+     * Gets the mod's metadata set through the decorator.
+     */
     public Map<String, String> getModMeta() {
         PyTuple ret = (PyTuple) modInstance.invoke("__mod_meta__");
         Map<String, String> modMeta = new java.util.HashMap<>();
