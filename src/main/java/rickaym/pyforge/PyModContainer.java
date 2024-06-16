@@ -13,13 +13,14 @@ import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rickaym.pyforge.events.PyEventBusWrapper;
 
 import static net.minecraftforge.fml.Logging.LOADING;
 
 import java.nio.file.Paths;
 
 /**
- * <strong>Currently holds no true implementation.</strong>
+ * <strong>This is the default implementation.</strong>
  * <br><br>
  * Extending the abstract class ModContainer to make a mod wrapper that comforts interactions with
  * the mod loading service and the overall system contact and management.
@@ -38,8 +39,8 @@ public class PyModContainer extends ModContainer {
      * Integrated @Mod Java instance
      **/
     private WrappedModInstance modInstance;
-    private String entryClass;
-    private IModInfo modInfo;
+    private final String entryClass;
+    private final IModInfo modInfo;
     public IEventBus eventBus;
 
     /**
