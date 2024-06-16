@@ -19,10 +19,8 @@ import org.apache.logging.log4j.Logger;
 import static net.minecraftforge.fml.Logging.LOADING;
 
 /**
- * Intermediary module loader for the mod classes and extension classes.
- * <p>
- * Takes the heavy lifting aspects in Java-Python (Jython) integration including the
- * scanning for mod files and initializing said modules. This is furthermore explained in the examples and code.
+ * Intermediary module loader for mod and extension classes. The PyModLoader is responsible for the heavy lifting
+ * required between Java-Python (Jython) conversion, as well as for scanning mod files and initializing modules.
  *
  * @see <a href="https://github.com/Rickaym/minecraft.py/tree/main/.info/examples/java-jython-integration">Examples</a>
  */
@@ -32,8 +30,11 @@ public class PyModLoader {
     private static final String IMPORT_FUNCTION = "__import__";
     private static List<Path> entryFiles;
     private static String modEntryFilePath;
-//    private static PySystemState sys = new PySystemState();
-    private static PythonInterpreter jyInterpreter = new PythonInterpreter();
+
+    // Ideally, it would be best to load the mod class without instantiating the
+    // interpreter, using PySystemState alone, but only the interpreter approach has worked so far.
+    // private static PySystemState sys = new PySystemState();
+    private static final PythonInterpreter jyInterpreter = new PythonInterpreter();
     private PyInstance modInstance;
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -97,8 +98,8 @@ public class PyModLoader {
 //        System.out.format("%s importer calling the top level module '%s'.\n", importer, moduleName);
 //        module = importer.__call__(Py.newString(moduleName));
         jyInterpreter.exec("import sys");
-        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));  // replace with actual path
-        jyInterpreter.exec(String.format("import %s", moduleName));  // replace with actual module name
+        jyInterpreter.exec(String.format("sys.path.append(\"%s\")", sourceDir));
+        jyInterpreter.exec(String.format("import %s", moduleName));
         module = jyInterpreter.get(moduleName);
         LOGGER.debug(LOADING, "Loaded in module '{}'", module);
         return module;
