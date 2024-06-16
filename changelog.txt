@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Decorator to transfer mod metadata to pymod
+- Decorator to transfer mod metadata to pyforge
 - Language provider to interacts with the FML system
 - Mod loader to load mods from the mods folder
 - Mod container to provide arms length access to FML

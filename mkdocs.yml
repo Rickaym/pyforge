@@ -1,0 +1,42 @@
+site_name: PyForge
+site_description: "The Python Language Provider for Minecraft Forge"
+site_url: "https://pyforge-mc.readthedocs.io/"
+repo_url: "https://github.com/rickaym/pyforge"
+watch: ["README.md"]
+repo_name: "rickaym/pyforge"
+site_dir: "site"
+copyright: Copyright &copy; 2024 Pyae Sone Myo
+nav:
+  - Home: index.md
+  - Contributions: contributions.md
+  - Internals: internals.md
+  - Jamboard: jamboard.md
+
+theme:
+  name: material
+  palette:
+    primary: custom
+  features:
+    - navigation.footer
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/UmnzdPgn6g
+    - icon: fontawesome/brands/github
+      link: https://github.com/rickaym/pyforge
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      check_paths: true
+  - admonition
+  - pymdownx.details
+
+extra_css:
+  - stylesheets/extra.css

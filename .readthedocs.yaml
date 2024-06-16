@@ -1,7 +1,7 @@
 version: 2
 
-sphinx:
-  configuration: docs/courseboard/conf.py
+mkdocs:
+  configuration: mkdocs.yml
 
 formats:
   - pdf
@@ -9,8 +9,8 @@ formats:
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.12"
+    python: "3.9.13"
 
 python:
   install:
-    - requirements: docs/courseboard/theme.txt
+    - requirements: docs/requirements.txt
