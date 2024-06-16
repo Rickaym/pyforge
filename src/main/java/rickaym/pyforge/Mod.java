@@ -2,7 +2,9 @@ package rickaym.pyforge;
 
 import org.python.core.*;
 
-/** Class decorator to mark as a mod. */
+/**
+ * `@Mod` decorator to mark a Python class as a mod.
+ */
 public class Mod extends PyObject {
     public static String mod_id;
 
