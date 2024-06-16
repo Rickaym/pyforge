@@ -4,13 +4,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 
 public class PyModLoadingContext {
-    private PyModContainer container;
+    private final PyModContainer container;
 
     public PyModLoadingContext(PyModContainer container) {
         this.container = container;
     }
 
-    public IEventBus getKEventBus() {
+    public IEventBus getModEventBus() {
         return container.eventBus;
     }
 
