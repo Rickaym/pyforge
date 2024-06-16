@@ -11,7 +11,7 @@
 
 I created pyforge as a way to test the capabilities of Jython and potentially find a way into Minecraft modding using Python.
 
-Read more after this at [pyforge-mc.readthedocs.io](https://pyforge-mc.readthedocs.com) if you are on GitHub.
+Read more after this at [pyforge-mc.readthedocs.io](https://pyforge-mc.readthedocs.io/en/latest/) if you are on GitHub.
 
 
 > [!WARNING]
