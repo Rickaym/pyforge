@@ -10,6 +10,7 @@ nav:
   - Home: index.md
   - Contributions: contributions.md
   - Internals: internals.md
+  - Painpoints: painpoints.md
   - Jamboard: jamboard.md
 
 theme:
