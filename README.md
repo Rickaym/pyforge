@@ -11,17 +11,17 @@ A language provider for the Fabric Mod Loader is also in the works.
 
 [See an example mod using PyForge here](https://github.com/Rickaym/pymod).
 
-I created pyforge as a way to test the capabilities of Jython and potentially find a way into Minecraft modding using Python.
+I created pyforge to test Jython's capabilities and potentially find a way into Minecraft modding using Python.
 
 Read more after this at [pyforge-mc.readthedocs.io](https://pyforge-mc.readthedocs.io/en/latest/) if you are on GitHub.
 
 
 > [!WARNING]
 >
-> Pyforge is usable at this point in time, but a lot of work still remains to be done. 
+> Pyforge is usable at this point, but much work remains to be done. 
 
 !!! warning
-    Pyforge is usable at this point in time, but a lot of work still remains to be done.
+    Pyforge is usable at this point, but much work remains to be done.
 
 ## Version Support
 
@@ -51,7 +51,7 @@ E.g.
 
 ### Setup
 
-The `__init__.py` file inside the `root.src.pymod` directory serves as the entrypoint to the mod. To setup the mod, you have to define a function inside the `__init__.py` file called `get_mod_instance` that readily returns an instance of the mod.
+The `__init__.py` file inside the `src.pymod` directory serves as the entry point to the mod. To set up the mod, you have to define a function inside the `__init__.py` file called `get_mod_instance` that readily returns an instance of the mod.
 
 ```python
 # __init__.py
@@ -68,10 +68,8 @@ To implement the mod class, decorate it with the `@Mod` decorator and define the
 
 import org.apache.logging.log4j.LogManager as LogManager
 
+# import the class decorator from the jar
 from rickaym.pyforge import Mod
-
-from ext import ExtensionClass, SecondExtensionClass
-from more_ext import MoreExt
 
 @Mod(mod_id="pymod")
 class MyMod:
@@ -82,9 +80,8 @@ class MyMod:
         self.LOGGER.info("Pymod is loaded 🐍☕")
 
     def register(self):
-        ExtensionClass.register()
-        SecondExtensionClass.register()
-        MoreExt.register()
+        # Some registration logic
+        ...
 ```
 
 Finally, you need a mods.toml file that describes the mod and sets pyforge as its mod loader.
@@ -106,11 +103,6 @@ license='MIT'
     '''
 
 [[dependencies.pymod]]
-    modId="forge"
-    ...
-
-[[dependencies.pymod]]
-    modId="minecraft"
     ...
 ```
 
