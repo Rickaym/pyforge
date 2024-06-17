@@ -7,6 +7,8 @@
 
 **PyForge** is a Python language provider crafted for Minecraft Forge. It leverages the Jython implementation of Python which runs on the JVM. The mod loader is compatible with CPython 2.7.x syntax and is designed to support a comprehensive implementation of a Forge Mod. 
 
+A language provider for the Fabric Mod Loader is also in the works.
+
 [See an example mod using PyForge here](https://github.com/Rickaym/pymod).
 
 I created pyforge as a way to test the capabilities of Jython and potentially find a way into Minecraft modding using Python.
